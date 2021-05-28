@@ -19,12 +19,10 @@ const useStyle = makeStyles({
     icon: {
         marginRight: '2.5rem'
     }
-
 });
 
 const Header = () => {
 const classes = useStyle();
-
 
     return(
         <div className={classes.root}>
