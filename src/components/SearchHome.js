@@ -65,6 +65,7 @@ const SearchHome = () => {
     return (
         <div className={classes.root}>
             <section className={classes.container}>
+            <form> 
                 <div className={classes.sectionSeach}>
                     <InputBase
                         className={classes.input}
@@ -79,7 +80,16 @@ const SearchHome = () => {
                     <IconButton className={classes.button} aria-label="send">
                         <SendIcon />
                     </IconButton>
-                </div>
+                </div> 
+            </form>
+
+
+
+
+
+
+
+
                 <div className={classes.divRadio}>
                     <RadioGroup row aria-label="position" name="position" defaultValue="artist">
                         <article className={classes.radio1}>
@@ -105,6 +115,7 @@ const SearchHome = () => {
                         </article>
                     </RadioGroup>
                 </div>
+
             </section>
 
         </div>

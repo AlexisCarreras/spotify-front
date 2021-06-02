@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchHome from './SearchHome'; 
-//import FavoritesHome from './FavoritesHome';
-import img from '../img/fondo.jpg'
+import SearchResult from './SearchResult';
+import img from '../img/fondo.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyle = makeStyles({
@@ -16,6 +16,14 @@ const useStyle = makeStyles({
     },
 });
 
+getArtistResult = async (e) => {
+    e.preventDefault();
+    fetch( process.env.REACT_APP_API_SEARCH_ARTIST+"oasis" )  
+        .then (response => response.json())
+        .then (data => console.log(data))
+
+}
+
 const Home = () => {
     const classes = useStyle();
 
@@ -23,6 +31,7 @@ const Home = () => {
         <div className={classes.root}>
             <img src={img} className={classes.img} alt="fondo" />
             <SearchHome />
+            <SearchResult />
         </div>
     );
 }

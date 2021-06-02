@@ -14,6 +14,7 @@ const useStyle = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        //boxShadow: '1px 15px 15px grey',
     },
     botonMenu:{
         color: 'white',
