@@ -17,7 +17,7 @@ const useStyle = makeStyles({
     container: {
 
     },
-    sectionSeach: {
+    sectionSearch: {
         display: 'flex',
     },
     input: {
@@ -66,14 +66,16 @@ const SearchHome = () => {
         <div className={classes.root}>
             <section className={classes.container}>
             <form> 
-                <div className={classes.sectionSeach}>
+                <div className={classes.sectionSearch}>
                     <InputBase
                         className={classes.input}
                         placeholder="Search..."
                         inputProps={{ 'aria-label': 'naked' }}
+                       
+
                         startAdornment={
                             <InputAdornment position="start">
-                                <SearchIcon />
+                                <SearchIcon action = "localhost:3000/"/>
                             </InputAdornment>
                         }
                     />
