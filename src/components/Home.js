@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchHome from './SearchHome'; 
-import SearchResult from './SearchResult';
+// import SearchResult from './SearchResult';
 import img from '../img/fondo.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,22 +16,36 @@ const useStyle = makeStyles({
     },
 });
 
-getArtistResult = async (e) => {
-    e.preventDefault();
-    fetch( process.env.REACT_APP_API_SEARCH_ARTIST+"oasis" )  
-        .then (response => response.json())
-        .then (data => console.log(data))
+// getArtistResult = async (e) => {
+//     e.preventDefault();
+//     fetch( process.env.REACT_APP_API_SEARCH_ARTIST+"oasis" )  
+//         .then (response => response.json())
+//         .then (data => console.log(data))
 
-}
+// }
 
 const Home = () => {
     const classes = useStyle();
+
+    fetch('https://localhost:44395/api/search/artist?name=%22oasis%22')
+        .then(response => response.json())
+        .then(data => {
+            // const a = data.map( art => art.images );
+            // const b = a.map(imgUrl => imgUrl.url);
+            let arr = [];
+            data.forEach(function(value){
+                //console.log(value.name, value.id, value.images[0].url);
+                arr.push({name: value.name, id: value.id, imageUrl: value.images[0].url});
+                 
+            })
+            console.log(arr);
+        });
 
     return (
         <div className={classes.root}>
             <img src={img} className={classes.img} alt="fondo" />
             <SearchHome />
-            <SearchResult />
+            {/* <SearchResult /> */}
         </div>
     );
 }
