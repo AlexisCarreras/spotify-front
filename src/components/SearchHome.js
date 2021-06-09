@@ -65,7 +65,7 @@ const SearchHome = () => {
     return (
         <div className={classes.root}>
             <section className={classes.container}>
-            <form> 
+            <form action="" method="GET"> 
                 <div className={classes.sectionSearch}>
                     <InputBase
                         className={classes.input}

@@ -12,7 +12,7 @@ function App() {
 
       <Route 
           component={ListOfArtists}
-          path="/:keyword" />
+          path="/artist/:keyword" />
     </div>
   );
 }
