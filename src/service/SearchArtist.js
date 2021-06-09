@@ -1,6 +1,7 @@
 
-export default function SearchArtist({keyword = "oasis"}) {
-    const ApiUrl = `https://localhost:44395/api/search/artist?name=${keyword}`
+export default function SearchArtist({keyword = "oasis"}, {value}) {
+    const ApiUrl = `https://localhost:44395/api/search/${value}?name=${keyword}`
+    console.log(ApiUrl)
     const ImgNotFound = "https://coacademy-server-jc.com/uploads/courses/images/890.jpg"
     return fetch(ApiUrl)
             .then(response => response.json())
@@ -15,12 +16,7 @@ export default function SearchArtist({keyword = "oasis"}) {
                     else{
                         artists.push({id, name, url:ImgNotFound});
                     }
-                    
-                    
                 })
-                //console.log(artists)
                 return artists
-
-            });
-        
+            });  
 }

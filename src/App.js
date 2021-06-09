@@ -1,7 +1,7 @@
 import Header from './components/Header';
 import Home from './components/Home';
 import ListOfArtists from './components/ListOfArtists';
-import { Link, Route } from "wouter";
+import { Route } from "wouter";
 
 
 function App() {
@@ -12,7 +12,10 @@ function App() {
 
       <Route 
           component={ListOfArtists}
-          path="/artist/:keyword" />
+          path="/artist/:keyword" 
+      />
+
+      
     </div>
   );
 }
