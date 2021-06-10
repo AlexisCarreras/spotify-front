@@ -12,7 +12,8 @@ function App() {
 
       <Route 
           component={ListOfArtists}
-          path="/artist/:keyword" 
+          path="/:value/:keyword" 
+
       />
 
       

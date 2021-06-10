@@ -12,7 +12,8 @@ export default function ListOfArtists( { params } ){
 
     useEffect(
         function(){
-            SearchArtist({keyword}, {value}).then(artist => setArtist(artist));
+            console.log(keyword, value);
+            SearchArtist(keyword, value).then(artist => setArtist(artist));
         }, 
         [keyword, value]
     );
@@ -24,8 +25,9 @@ export default function ListOfArtists( { params } ){
                 id = {id}
                 key = {id}
                 name = {name}
-                url = {url} />
-                )
+                url = {url ? url : null} 
+            />
+            )
         }
     </div>
 }
