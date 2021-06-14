@@ -4,7 +4,6 @@ import img from '../img/fondo.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchArtist from '../service/SearchArtist';
 
-
 const useStyle = makeStyles({
     root: {
         // display: 'flex',

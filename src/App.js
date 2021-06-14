@@ -13,7 +13,6 @@ function App() {
       <Route 
           component={ListOfArtists}
           path="/:value/:keyword" 
-
       />
 
       

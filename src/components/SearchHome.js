@@ -23,14 +23,14 @@ const useStyle = makeStyles({
         display: 'flex',
     },
     input: {
-        marginTop: '5rem',
+        marginTop: '4.5rem',
         paddingRight: '5rem',
         paddingLeft: '1rem',
         backgroundColor: 'white',
         borderRadius: '3rem',
     },
     button: {
-        marginTop: '5rem',
+        marginTop: '4.5rem',
         marginLeft: '0.5rem',
         color: 'white',
         backgroundColor: '#F50057',
