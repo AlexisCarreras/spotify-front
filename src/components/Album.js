@@ -19,7 +19,6 @@ const useStyles = makeStyles(() => ({
     },
     img: {
         margin: 'auto',
-        borderRadius: '100%',
         height: '80px',
         width: '80px',
         padding: '0.5rem',
@@ -28,7 +27,7 @@ const useStyles = makeStyles(() => ({
     name: {
         color: 'white',
         textAlign: 'center',
-        fontWeight: 'bold',
+        //fontWeight: 'bold',
     }
 }));
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Artist from './Artist';
+import Album from './Album';
 import SearchArtist from '../service/SearchArtist';
 import Button from '@material-ui/core/Button';
 
@@ -53,19 +54,52 @@ export default function ListOfArtists( { params } ){
         }, 
         [keyword, value]
     );
-    
-    return (
-        <div className={classes.root}>
-            <div className={classes.items}>
-                {
-                    artist.map(({id, name, url}) =>
+
+    const comprobarType = () => {
+        const type = value;
+
+        if (type == "artist") {
+            return (
+                artist.map(({id, name, url}) =>
                     <Artist
                         id = {id}
                         key = {id}
                         name = {name}
                         url = {url ? url : null} 
                     />
-                    )
+                )
+            )
+        }
+        else if (type == "album") {
+            return (
+                artist.map(({id, name, url}) =>
+                    <Album
+                        id = {id}
+                        key = {id}
+                        name = {name}
+                        url = {url ? url : null} 
+                    />
+                )
+            )
+        }
+        else if (type == "track") {
+
+        }
+    }
+    
+    return (
+        <div className={classes.root}>
+            <div className={classes.items}>
+                {
+                    comprobarType()
+                    // artist.map(({id, name, url}) =>
+                    // <Artist
+                    //     id = {id}
+                    //     key = {id}
+                    //     name = {name}
+                    //     url = {url ? url : null} 
+                    // />
+                    // )
                 }
             </div>
             <div className={classes.contentButton}>
