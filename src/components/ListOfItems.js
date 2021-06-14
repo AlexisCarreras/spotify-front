@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Artist from './Artist';
-import SearchArtist from '../service/SearchArtist';
+import Item from './Item';
+import SearchItems from '../service/SearchItems';
 import Button from '@material-ui/core/Button';
 
 const useStyle = makeStyles({
@@ -44,12 +44,12 @@ export default function ListOfArtists( { params } ){
 
     console.log(params)
 
-    const [artist, setArtist] = useState([]);
+    const [item, setItem] = useState([]);
 
     useEffect(
         function(){
             console.log(keyword, value);
-            SearchArtist(keyword, value).then(artist => setArtist(artist));
+            SearchItems(keyword, value).then(item => setItem(item));
         }, 
         [keyword, value]
     );
@@ -58,12 +58,15 @@ export default function ListOfArtists( { params } ){
         <div className={classes.root}>
             <div className={classes.items}>
                 {
-                    artist.map(({id, name, url}) =>
-                    <Artist
+                    item.map(({id, name, url, artistName, albumName, albumArtist}) =>
+                    <Item
                         id = {id}
                         key = {id}
                         name = {name}
                         url = {url ? url : null} 
+                        artistName = {artistName}
+                        albumName = {albumName}
+                        albumArtist = {albumArtist}
                     />
                     )
                 }

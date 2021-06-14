@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export default function Artist({id, name, url}){
+export default function Item({id, name, url, artistName, albumName, albumArtist}){
     const classes = useStyles();
 
     return (
@@ -45,10 +45,17 @@ export default function Artist({id, name, url}){
                 image={url}
                 title="Contemplative Reptile"
                 className={classes.img}
+                
                 />
                 <CardContent>
                     <Typography className={classes.name} variant="body2" component="h2">
                         {name}
+                    </Typography>
+                    <Typography className={classes.name} variant="h9" component="p">
+                        {albumArtist}
+                    </Typography>
+                    <Typography className={classes.name} variant="h9" component="p">
+                        {artistName}
                     </Typography>
                 </CardContent>
             </CardActionArea>

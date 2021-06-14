@@ -1,6 +1,6 @@
 import Header from './components/Header';
 import Home from './components/Home';
-import ListOfArtists from './components/ListOfArtists';
+import ListOfArtists from './components/ListOfItems';
 import { Route } from "wouter";
 
 
