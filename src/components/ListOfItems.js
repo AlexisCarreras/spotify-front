@@ -58,9 +58,10 @@ export default function ListOfArtists( { params } ){
         <div className={classes.root}>
             <div className={classes.items}>
                 {
-                    item.map(({id, name, url, artistName, albumName, albumArtist}) =>
+                    item.map(({id, type, name, url, artistName, albumName, albumArtist}) =>
                     <Item
                         id = {id}
+                        type = {type}
                         key = {id}
                         name = {name}
                         url = {url ? url : null} 

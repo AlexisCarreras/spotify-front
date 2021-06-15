@@ -5,74 +5,136 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
 
-const useStyles = makeStyles(() => ({
+
+const useStyles = makeStyles((theme) => ({
     root: {
-        height: '12rem',
-        width: '8rem',
+        height: '13rem',
+        width: '9rem',
         position: 'relative',
         borderRadius: '20px',
         background: 'rgba(85, 85, 85, 0.7)',
         '&:hover': {
             background: 'rgba(34, 34, 34, 0.65)',
-        }
+        },
+    },
+    avatarArtist : {
+        margin: 'auto',
+        marginTop: '1rem',
+        width: theme.spacing(12),
+        height: theme.spacing(12),
     },
     img: {
         margin: 'auto',
-        borderRadius: '100%',
-        height: '80px',
-        width: '80px',
+        borderRadius: '50%',
+        height: '100px',
+        width: '100px',
         padding: '0.5rem',
-        paddingTop: '1rem',
     },
-    name: {
+    avatarAlbum: {
+        margin: 'auto',
+        marginTop: '1rem',
+        width: theme.spacing(11),
+        height: theme.spacing(11),
+    },
+    nameArtist: {
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
-    }
+    },
+    nameAlbum: {
+        color: '#FFFF',
+        marginBottom: '0.4rem',
+    },
+    nameAlbumArtist: {
+        color: '#D0D0D0',
+        fontWeight: 'bold',
+        lineHeight: '14px',
+    },
+    rootTrack: {
+        height: '13rem',
+        width: '9rem',
+        position: 'relative',
+        borderRadius: '20px',
+        background: 'rgba(85, 85, 85, 0.7)',
+        '&:hover': {
+            background: 'rgba(34, 34, 34, 0.65)',
+        },
+    },
+    avatarTrack: {
+        margin: 'auto',
+        marginTop: '1rem',
+        width: theme.spacing(11),
+        height: theme.spacing(11),
+    },
+    nameTrack: {
+        color: '#FFFF',
+    },
+    nameArtistTrack: {
+        color: '#FFFF',
+    },
 }));
 
-export default function Item({id, name, url, artistName, albumName, albumArtist}){
+const nameSlice = (name, cantidad) => {
+    if (name.length > cantidad) {
+        var nombre = name.substring(0,cantidad)
+        return nombre + "..."
+    }
+    console.log(nombre)
+
+    return name
+}
+
+export default function Item({id, type, name, url, artistName, albumName, albumArtist}){
     const classes = useStyles();
 
-    return (
-        <Card className={classes.root}>
-            <CardActionArea>
-                <CardMedia
-                component="img"
-                alt={name}
-                height="140"
-                image={url}
-                title="Contemplative Reptile"
-                className={classes.img}
-                
-                />
-                <CardContent>
-                    <Typography className={classes.name} variant="body2" component="h2">
-                        {name}
-                    </Typography>
-                    <Typography className={classes.name} variant="h9" component="p">
-                        {albumArtist}
-                    </Typography>
-                    <Typography className={classes.name} variant="h9" component="p">
-                        {artistName}
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-        </Card>
-
-
-
-        // <div className={classes.root}>
-        //     <img src={url} className={classes.img} alt={name} />
-        //     <Typography variant="h6" gutterBottom>
-        //         {name}
-        //     </Typography> 
-        //      <Typography variant="body2" gutterBottom> {id}</Typography> 
-
-        //     <h1>{name}</h1>
-        //     <h4>{id}</h4>
-        //     <img alt = {name} src={url} />}
-        // </div>
-    )
+    if (type == "artist") {
+        return (
+            <Card className={classes.root} title={name}>
+                <CardActionArea>
+                    <Avatar className={classes.avatarArtist} alt="Artist" src={url} />
+                    <CardContent>
+                        <Typography className={classes.nameArtist} variant="body2" component="h2">
+                            { nameSlice(name, 30)}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
+        )
+    }
+    else if (type == "album" || type == "single" || type == "compilation") {
+        return (
+            <Card className={classes.root} title={name}>
+                <CardActionArea>
+                    <Avatar alt="Album" src={url} variant="square" className={classes.avatarAlbum} />
+                    <CardContent>
+                        <Typography className={classes.nameAlbum} variant="body2" component="h2">
+                            { nameSlice(name, 25)}
+                        </Typography>
+                        <Typography className={classes.nameAlbumArtist} variant="caption" component="p">
+                            {albumArtist}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
+        )
+    }
+    else if (type == "track") {
+        return (
+            <Card className={classes.rootTrack} title={name}>
+                <CardActionArea>
+                    <Avatar alt="Track" src={url} variant="square" className={classes.avatarTrack} />
+                    <CardContent>
+                        <Typography className={classes.nameTrack} variant="caption" component="h2">
+                            {name}
+                        </Typography>
+                        <Typography className={classes.nameArtistTrack} variant="caption" component="p">
+                            {artistName}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
+        )
+    }
 }
