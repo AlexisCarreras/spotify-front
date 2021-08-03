@@ -8,6 +8,8 @@ import SendIcon from '@material-ui/icons/Send';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Link, useLocation } from "wouter";
+import { useState } from "react"
 
 const useStyle = makeStyles({
     root: {
@@ -17,18 +19,18 @@ const useStyle = makeStyles({
     container: {
 
     },
-    sectionSeach: {
+    sectionSearch: {
         display: 'flex',
     },
     input: {
-        marginTop: '5rem',
+        marginTop: '4.5rem',
         paddingRight: '5rem',
         paddingLeft: '1rem',
         backgroundColor: 'white',
         borderRadius: '3rem',
     },
     button: {
-        marginTop: '5rem',
+        marginTop: '4.5rem',
         marginLeft: '0.5rem',
         color: 'white',
         backgroundColor: '#F50057',
@@ -62,13 +64,33 @@ const useStyle = makeStyles({
 const SearchHome = () => {
     const classes = useStyle();
 
+    const [keyword, setKeyword] = useState('')
+    const [value, setValue] = useState('artist')
+    const [path, pushLocation] = useLocation()
+
+    const handleSubmit = evt => {
+        evt.preventDefault()
+        pushLocation(`/${value}/${keyword}`)
+    }
+
+    const handleChange = evt => {
+        setKeyword(evt.target.value)
+    }
+
+    const handleRadioChange = (event) => {
+        setValue(event.target.value);
+      };
+
     return (
         <div className={classes.root}>
             <section className={classes.container}>
-            <form> 
-                <div className={classes.sectionSeach}>
+            <form onSubmit = {handleSubmit}> 
+                <div className={classes.sectionSearch}>
                     <InputBase
                         className={classes.input}
+                        onChange = {handleChange}
+                        type = "text"
+                        value = {keyword}
                         placeholder="Search..."
                         inputProps={{ 'aria-label': 'naked' }}
                         startAdornment={
@@ -77,21 +99,12 @@ const SearchHome = () => {
                             </InputAdornment>
                         }
                     />
-                    <IconButton className={classes.button} aria-label="send">
+                    <IconButton type = "submit" className={classes.button} aria-label="send">
                         <SendIcon />
                     </IconButton>
                 </div> 
-            </form>
-
-
-
-
-
-
-
-
                 <div className={classes.divRadio}>
-                    <RadioGroup row aria-label="position" name="position" defaultValue="artist">
+                    <RadioGroup row aria-label="position" name="position" defaultValue="artist" value = {value} onChange = {handleRadioChange}>
                         <article className={classes.radio1}>
                             <FormControlLabel
                                 value="artist"
@@ -115,7 +128,7 @@ const SearchHome = () => {
                         </article>
                     </RadioGroup>
                 </div>
-
+            </form>
             </section>
 
         </div>
