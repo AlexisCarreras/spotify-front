@@ -10,6 +10,12 @@ const useStyle = makeStyles({
         justifyContent: 'space-around',
         margin: '6rem 5rem 0 5rem',
     },
+
+    itemsTrack: {
+        marginTop: '5rem',
+        marginLeft: '20rem',
+    },
+
     contentButton: {
         width: '100%',
         display: 'flex',
@@ -54,33 +60,66 @@ export default function ListOfArtists( { params } ){
         [keyword, value]
     );
     
-    return (
-        <div className={classes.root}>
-            <div className={classes.items}>
-                {
-                    item.map(({id, type, name_artist, imagen_url, name_album, name_track, track_lenght, favorite}) =>
-                    <Item
-                        id = {id}
-                        type = {type}
-                        key = {id}
-                        artistName = {name_artist}
-                        url = {imagen_url ? imagen_url : null}
-                        albumName = {name_album}
-                        trackName = {name_track}
-                        trackLenght = {track_lenght}
-                        favorite = {favorite}
-                    />
-                    )
-                }
+    if(value==="artist" || value==="album"){
+        return (
+            <div className={classes.root}>
+                <div className={classes.items}>
+                    {
+                        item.map(({id, type, name_artist, imagen_url, name_album, name_track, track_lenght, favorite}) =>
+                        <Item
+                            id = {id}
+                            type = {type}
+                            key = {id}
+                            artistName = {name_artist}
+                            url = {imagen_url ? imagen_url : null}
+                            albumName = {name_album}
+                            trackName = {name_track}
+                            trackLenght = {track_lenght}
+                            favorite = {favorite}
+                        />
+                        )
+                    }
+                </div>
+                <div className={classes.contentButton}>
+                    <Button className={classes.buttonVolver} variant="outlined" >
+                            Volver
+                    </Button>
+                    <Button className={classes.buttonVerMas} variant="contained" color="secondary">
+                        Ver más
+                    </Button>
+                </div>
             </div>
-            <div className={classes.contentButton}>
-                <Button className={classes.buttonVolver} variant="outlined" >
-                        Volver
-                </Button>
-                <Button className={classes.buttonVerMas} variant="contained" color="secondary">
-                    Ver más
-                </Button>
+        )
+    }
+    else {
+        return (
+            <div className={classes.rootTrack}>
+                <div className={classes.itemsTrack}>
+                    {
+                        item.map(({id, type, name_artist, imagen_url, name_album, name_track, track_lenght, favorite}) =>
+                        <Item
+                            id = {id}
+                            type = {type}
+                            key = {id}
+                            artistName = {name_artist}
+                            url = {imagen_url ? imagen_url : null}
+                            albumName = {name_album}
+                            trackName = {name_track}
+                            trackLenght = {track_lenght}
+                            favorite = {favorite}
+                        />
+                        )
+                    }
+                </div>
+                <div className={classes.contentButton}>
+                    <Button className={classes.buttonVolver} variant="outlined" >
+                            Volver
+                    </Button>
+                    <Button className={classes.buttonVerMas} variant="contained" color="secondary">
+                        Ver más
+                    </Button>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
