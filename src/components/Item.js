@@ -77,26 +77,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const nameSlice = (name, cantidad) => {
+    console.log(name, cantidad)
     if (name.length > cantidad) {
         var nombre = name.substring(0,cantidad)
         return nombre + "..."
     }
-    console.log(nombre)
-
     return name
 }
 
-export default function Item({id, type, name, url, artistName, albumName, albumArtist}){
+export default function Item({id, type, url, artistName, albumName, trackName, trackLenght, favorite}){
     const classes = useStyles();
 
     if (type == "artist") {
         return (
-            <Card className={classes.root} title={name}>
+            <Card className={classes.root} title={artistName}>
                 <CardActionArea>
                     <Avatar className={classes.avatarArtist} alt="Artist" src={url} />
                     <CardContent>
                         <Typography className={classes.nameArtist} variant="body2" component="h2">
-                            { nameSlice(name, 30)}
+                            { nameSlice(artistName, 30)}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -105,15 +104,15 @@ export default function Item({id, type, name, url, artistName, albumName, albumA
     }
     else if (type == "album" || type == "single" || type == "compilation") {
         return (
-            <Card className={classes.root} title={name}>
+            <Card className={classes.root} title={albumName}>
                 <CardActionArea>
                     <Avatar alt="Album" src={url} variant="square" className={classes.avatarAlbum} />
                     <CardContent>
                         <Typography className={classes.nameAlbum} variant="body2" component="h2">
-                            { nameSlice(name, 25)}
+                            { nameSlice(albumName, 25)}
                         </Typography>
                         <Typography className={classes.nameAlbumArtist} variant="caption" component="p">
-                            {albumArtist}
+                            {artistName}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -122,12 +121,12 @@ export default function Item({id, type, name, url, artistName, albumName, albumA
     }
     else if (type == "track") {
         return (
-            <Card className={classes.rootTrack} title={name}>
+            <Card className={classes.rootTrack} title={trackName}>
                 <CardActionArea>
                     <Avatar alt="Track" src={url} variant="square" className={classes.avatarTrack} />
                     <CardContent>
                         <Typography className={classes.nameTrack} variant="caption" component="h2">
-                            {name}
+                            {trackName}
                         </Typography>
                         <Typography className={classes.nameArtistTrack} variant="caption" component="p">
                             {artistName}

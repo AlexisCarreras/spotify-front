@@ -8,36 +8,31 @@ export default function SearchItem(keyword, value) {
             .then(data => {
                 let items = [];
                 data.forEach( a =>{
-                    const { id, type, name, images=null, artistName=null, albumName=null, albumArtist=null } = a;
+                    const { id, type, name_artist, imagen_url=null, name_album, name_track, track_lenght, favorite } = a;
                     if(type == "artist"){
-                        if(images!=null && images.length > 0){
-                            const imageUrl = images[0].url;
-                            items.push({type, id, name, url: imageUrl});
+                        if(imagen_url!=null && imagen_url.length > 0){
+                            items.push({type, id, name_artist, imagen_url});
                         }
                         else{
-                            items.push({type, id, name, url:ImgNotFound});
+                            items.push({type, id, name_artist, url:ImgNotFound});
                         }
                     }
                     else if (type == "album" || type == "single" || type == "compilation"){
-                        if(images!=null && images.length > 0){
-                            const imageUrl = images[0].url;
-                            items.push({type, id, name, url: imageUrl, albumArtist});
+                        if(imagen_url!=null && imagen_url.length > 0){
+                            items.push({type, id, name_album, imagen_url, name_artist});
                         }
                         else{
-                            items.push({type, id, name, url:ImgNotFound, albumArtist});
+                            items.push({type, id, name_album, url:ImgNotFound, name_artist});
                         }
                     }
                     else if (type == "track") {
-                        if(images!=null && images.length > 0){
-                            const imageUrl = images[0].url;
-                            items.push({type, id, name, url: imageUrl, albumName, artistName});
+                        if(imagen_url!=null && imagen_url.length > 0){
+                            items.push({type, id, name_track, imagen_url, name_album, name_artist, track_lenght, favorite});
                         }
                         else{
-                            items.push({type, id, name, url:ImgNotFound, albumName, artistName});
+                            items.push({type, id, name_track, url:ImgNotFound, name_album, name_artist, track_lenght, favorite});
                         }
-
                     }
-                    
                 })
                 return items
             });  

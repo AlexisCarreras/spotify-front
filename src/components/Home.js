@@ -20,7 +20,7 @@ const Home = () => {
 
     const classes = useStyle();
 
-    fetch('https://localhost:44395/api/search/artist?name=%22oasis%22')
+    fetch('https://localhost:44395/api/search')
         .then(response => response.json())
         .then(data => {
             // const a = data.map( art => art.images );
