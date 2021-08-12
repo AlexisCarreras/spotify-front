@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -6,7 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarIcon from '@material-ui/icons/Star';
+import { Favorite } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             background: 'rgba(34, 34, 34, 0.65)',
         },
+        marginRight: '1rem',
+        marginLeft: '1rem',
     },
     avatarArtist : {
         margin: 'auto',
@@ -91,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    starIcon: {
+    favoriteIconFalse: {
         color: 'white',
     },
     duracion: {
@@ -111,8 +116,32 @@ const nameSlice = (name, cantidad) => {
     return name
 }
 
+
 export default function Item({id, type, url, artistName, albumName, trackName, trackLenght, favorite}){
     const classes = useStyles();
+    const [open, setOpen] = useState(favorite);
+    
+    const handleOpen = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = () => {
+        setOpen(false);
+      };
+
+    let favoriteIcon
+    if(open==false){
+        favoriteIcon =
+            <IconButton onClick={handleOpen} aria-label="iconStart">
+                <StarBorderIcon className={classes.favoriteIconFalse} />
+            </IconButton>
+    }
+    else{
+        favoriteIcon = 
+            <IconButton onClick={handleClose} color="secondary" aria-label="iconStart">
+                <StarIcon />
+            </IconButton>
+    }
 
     if (type == "artist") {
         return (
@@ -152,7 +181,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
                     <Avatar alt="Track" src={url} variant="square" className={classes.avatarTrack} />
                     <CardContent>
                         <Typography className={classes.nameTrack} variant="caption" component="h2">
-                            {trackName}
+                            { nameSlice(trackName, 23)}
                         </Typography>
                         <Typography className={classes.nameArtistTrack} variant="caption" component="p">
                             {artistName}
@@ -160,7 +189,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
                     </CardContent>
                 </CardActionArea>
                 <CardActionArea className={classes.area2}>
-                        <StarBorderIcon className={classes.starIcon} />
+                        {favoriteIcon}
                         <Typography className={classes.duracion} variant="caption" component="p">
                             {trackLenght}
                         </Typography>

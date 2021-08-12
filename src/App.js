@@ -14,6 +14,7 @@ function App() {
           component={ListOfArtists}
           path="/:value/:keyword" 
       />
+      
 
       
     </div>

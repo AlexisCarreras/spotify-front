@@ -2,67 +2,104 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Item from './Item';
 import SearchItems from '../service/SearchItems';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyle = makeStyles({
+    root: {
+        display: 'flex',
+        justifyContent: 'center',
+    },
     items: {
         display: 'flex',
-        justifyContent: 'space-around',
-        margin: '6rem 5rem 0 5rem',
+        justifyContent: 'center',
+        marginTop: '8.5rem',
+    },
+    contentButton: {
+        display: 'flex',
+        marginTop: '8.5rem',
+    },
+    buttonArtistAlbum: {
+        margin: 'auto',
     },
 
     itemsTrack: {
-        marginTop: '5rem',
         marginLeft: '20rem',
     },
-
-    contentButton: {
+    topButtonTrack: {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        marginTop: '4rem',
+        marginTop: '3.5rem',
     },
-    buttonVolver: {
-        padding: '0.5rem 2rem 0.5rem 2rem',
-        color: '#FFFF',
-        textTransform: 'none',
-        background: '#282828',
-        border: '1px solid #FFFFFF',
-        borderRadius: '25px',
-        '&:hover': {
-            background: '#4A4A4A',
-        },
-        marginRight: '1rem',
-    },
-    buttonVerMas: {
-        padding: '0.5rem 2rem 0.5rem 2rem',
-        color: '#FFFF',
-        textTransform: 'none',
-        border: '1px solid #FFFFFF',
-        borderRadius: '25px',
-        marginLeft: '1rem',
+    bottomButtonTrack: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
     },
 });
 
 export default function ListOfArtists( { params } ){
     const classes = useStyle();
-    const { keyword, value } = params;
+    const { keyword, value, offset } = params;
 
     console.log(params)
 
     const [item, setItem] = useState([]);
 
+    const [paginacion, setPaginacion] = useState(0);
+
     useEffect(
         function(){
-            console.log(keyword, value);
-            SearchItems(keyword, value).then(item => setItem(item));
+            console.log(keyword, value, paginacion);
+            SearchItems(keyword, value, paginacion).then(item => setItem(item));
         }, 
-        [keyword, value]
+        [keyword, value, paginacion]
     );
     
+    //Boton (flecha) para ver los anteriores resultados de Artist y Album
+    let backButton;
+    if(paginacion < 5)
+    {
+        backButton = 
+                <IconButton disabled color="secondary" aria-label="arrow netx">
+                    <ArrowBackIosIcon />
+                </IconButton>
+    }
+    else if(paginacion >= 5) 
+    {
+        backButton = 
+                <IconButton onClick={() => setPaginacion(paginacion - 5)} className={classes.buttonArtistAlbum} color="secondary" aria-label="arrow netx">
+                    <ArrowBackIosIcon />
+                 </IconButton>
+    }
+
+    //Boton (flecha) para ver los anteriores resultados de Tracks
+    let backButtonTrack;
+    if(paginacion < 5)
+    {
+        backButtonTrack = 
+                <IconButton disabled color="secondary" aria-label="arrow netx">
+                    <ExpandLessIcon fontSize="large" />
+                </IconButton>
+    }
+    else if(paginacion >= 5) 
+    {
+        backButtonTrack = 
+                <IconButton onClick={() => setPaginacion(paginacion - 5)} color="secondary" aria-label="arrow netx">
+                    <ExpandLessIcon fontSize="large" />
+                 </IconButton>
+    }
+
     if(value==="artist" || value==="album"){
         return (
             <div className={classes.root}>
+                <div className={classes.contentButton}>
+                    {backButton}
+                </div>
                 <div className={classes.items}>
                     {
                         item.map(({id, type, name_artist, imagen_url, name_album, name_track, track_lenght, favorite}) =>
@@ -81,12 +118,9 @@ export default function ListOfArtists( { params } ){
                     }
                 </div>
                 <div className={classes.contentButton}>
-                    <Button className={classes.buttonVolver} variant="outlined" >
-                            Volver
-                    </Button>
-                    <Button className={classes.buttonVerMas} variant="contained" color="secondary">
-                        Ver más
-                    </Button>
+                    <IconButton onClick={() => setPaginacion(paginacion + 5)} className={classes.buttonArtistAlbum} color="secondary" aria-label="arrow netx">
+                        <ArrowForwardIosIcon />
+                    </IconButton>
                 </div>
             </div>
         )
@@ -94,6 +128,9 @@ export default function ListOfArtists( { params } ){
     else {
         return (
             <div className={classes.rootTrack}>
+                <div className={classes.topButtonTrack}>
+                    {backButtonTrack}
+                </div>
                 <div className={classes.itemsTrack}>
                     {
                         item.map(({id, type, name_artist, imagen_url, name_album, name_track, track_lenght, favorite}) =>
@@ -111,13 +148,10 @@ export default function ListOfArtists( { params } ){
                         )
                     }
                 </div>
-                <div className={classes.contentButton}>
-                    <Button className={classes.buttonVolver} variant="outlined" >
-                            Volver
-                    </Button>
-                    <Button className={classes.buttonVerMas} variant="contained" color="secondary">
-                        Ver más
-                    </Button>
+                <div className={classes.bottomButtonTrack}>
+                    <IconButton onClick={() => setPaginacion(paginacion + 5)} color="secondary" aria-label="arrow netx">
+                        <ExpandMoreIcon fontSize="large" />
+                    </IconButton>
                 </div>
             </div>
         )
