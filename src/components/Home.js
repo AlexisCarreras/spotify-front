@@ -2,7 +2,7 @@ import React from 'react';
 import SearchHome from './SearchHome'; 
 import img from '../img/fondo.jpg';
 import { makeStyles } from '@material-ui/core/styles';
-import SearchArtist from '../service/SearchItems';
+import SearchArtist from '../service/SearchService';
 
 const useStyle = makeStyles({
     root: {
@@ -19,20 +19,6 @@ const useStyle = makeStyles({
 const Home = () => {
 
     const classes = useStyle();
-
-    fetch('https://localhost:44395/api/search')
-        .then(response => response.json())
-        .then(data => {
-            // const a = data.map( art => art.images );
-            // const b = a.map(imgUrl => imgUrl.url);
-            let arr = [];
-            data.forEach(function(value){
-                //console.log(value.name, value.id, value.images[0].url);
-                arr.push({name: value.name, id: value.id, imageUrl: value.images[0].url});
-                 
-            })
-            console.log(arr);
-        });
 
     return (
         <div className={classes.root}>

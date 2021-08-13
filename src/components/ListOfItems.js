@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Home from './Home';
 import { makeStyles } from '@material-ui/core/styles';
 import Item from './Item';
-import SearchItems from '../service/SearchItems';
+import SearchService from '../service/SearchService';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -44,7 +45,7 @@ const useStyle = makeStyles({
 
 export default function ListOfArtists( { params } ){
     const classes = useStyle();
-    const { keyword, value, offset } = params;
+    const { keyword, value } = params;
 
     console.log(params)
 
@@ -55,7 +56,7 @@ export default function ListOfArtists( { params } ){
     useEffect(
         function(){
             console.log(keyword, value, paginacion);
-            SearchItems(keyword, value, paginacion).then(item => setItem(item));
+            SearchService(keyword, value, paginacion).then(item => setItem(item));
         }, 
         [keyword, value, paginacion]
     );
@@ -96,62 +97,68 @@ export default function ListOfArtists( { params } ){
 
     if(value==="artist" || value==="album"){
         return (
-            <div className={classes.root}>
-                <div className={classes.contentButton}>
-                    {backButton}
-                </div>
-                <div className={classes.items}>
-                    {
-                        item.map(({id, type, name_artist, imagen_url, name_album, name_track, track_lenght, favorite}) =>
-                        <Item
-                            id = {id}
-                            type = {type}
-                            key = {id}
-                            artistName = {name_artist}
-                            url = {imagen_url ? imagen_url : null}
-                            albumName = {name_album}
-                            trackName = {name_track}
-                            trackLenght = {track_lenght}
-                            favorite = {favorite}
-                        />
-                        )
-                    }
-                </div>
-                <div className={classes.contentButton}>
-                    <IconButton onClick={() => setPaginacion(paginacion + 5)} className={classes.buttonArtistAlbum} color="secondary" aria-label="arrow netx">
-                        <ArrowForwardIosIcon />
-                    </IconButton>
+            <div>
+                <Home />
+                <div className={classes.root}>
+                    <div className={classes.contentButton}>
+                        {backButton}
+                    </div>
+                    <div className={classes.items}>
+                        {
+                            item.map(({id, type, name_artist, imagen_url, name_album, name_track, track_lenght, favorite}) =>
+                            <Item
+                                id = {id}
+                                type = {type}
+                                key = {id}
+                                artistName = {name_artist}
+                                url = {imagen_url ? imagen_url : null}
+                                albumName = {name_album}
+                                trackName = {name_track}
+                                trackLenght = {track_lenght}
+                                favorite = {favorite}
+                            />
+                            )
+                        }
+                    </div>
+                    <div className={classes.contentButton}>
+                        <IconButton onClick={() => setPaginacion(paginacion + 5)} className={classes.buttonArtistAlbum} color="secondary" aria-label="arrow netx">
+                            <ArrowForwardIosIcon />
+                        </IconButton>
+                    </div>
                 </div>
             </div>
         )
     }
     else {
         return (
-            <div className={classes.rootTrack}>
-                <div className={classes.topButtonTrack}>
-                    {backButtonTrack}
-                </div>
-                <div className={classes.itemsTrack}>
-                    {
-                        item.map(({id, type, name_artist, imagen_url, name_album, name_track, track_lenght, favorite}) =>
-                        <Item
-                            id = {id}
-                            type = {type}
-                            key = {id}
-                            artistName = {name_artist}
-                            url = {imagen_url ? imagen_url : null}
-                            albumName = {name_album}
-                            trackName = {name_track}
-                            trackLenght = {track_lenght}
-                            favorite = {favorite}
-                        />
-                        )
-                    }
-                </div>
-                <div className={classes.bottomButtonTrack}>
-                    <IconButton onClick={() => setPaginacion(paginacion + 5)} color="secondary" aria-label="arrow netx">
-                        <ExpandMoreIcon fontSize="large" />
-                    </IconButton>
+            <div>
+                <Home />
+                <div className={classes.rootTrack}>
+                    <div className={classes.topButtonTrack}>
+                        {backButtonTrack}
+                    </div>
+                    <div className={classes.itemsTrack}>
+                        {
+                            item.map(({id, type, name_artist, imagen_url, name_album, name_track, track_lenght, favorite}) =>
+                            <Item
+                                id = {id}
+                                type = {type}
+                                key = {id}
+                                artistName = {name_artist}
+                                url = {imagen_url ? imagen_url : null}
+                                albumName = {name_album}
+                                trackName = {name_track}
+                                trackLenght = {track_lenght}
+                                favorite = {favorite}
+                            />
+                            )
+                        }
+                    </div>
+                    <div className={classes.bottomButtonTrack}>
+                        <IconButton onClick={() => setPaginacion(paginacion + 5)} color="secondary" aria-label="arrow netx">
+                            <ExpandMoreIcon fontSize="large" />
+                        </IconButton>
+                    </div>
                 </div>
             </div>
         )
