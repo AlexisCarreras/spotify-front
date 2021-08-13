@@ -57,6 +57,7 @@ export default function ListOfArtists( { params } ){
         function(){
             console.log(keyword, value, paginacion);
             SearchService(keyword, value, paginacion).then(item => setItem(item));
+            console.log("aca" + item)
         }, 
         [keyword, value, paginacion]
     );

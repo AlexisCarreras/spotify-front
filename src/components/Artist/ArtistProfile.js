@@ -2,35 +2,32 @@ import React, { useEffect, useState } from "react";
 import ArtistService from "../../service/ArtistService";
 import Artist from "./Artist";
 
-export default function ArtistProfile (){
+export default function ArtistProfile({params}) {
+  const [artist, setArtist] = useState();
+  const { id } = params;
 
-    const [artist, setArtist] = useState([]);
+  useEffect(function () {
+      
+    ArtistService(id).then((responseArtist) => setArtist(responseArtist));
+    //console.log(artist);
+  }, [id]);
 
-    useEffect(
-        function(){
-            ArtistService().then(artist => setArtist(artist));
-            //console.log(artist);
-        }, 
-        []
-    );
-
-    return(
-        <div>
-            <h3>{artist.artist}</h3>
+  return (
+    <div>
+      {
+        artist &&
+          <div>
             {console.log(artist)}
-            {/* {
-                artist.map(({id, name, type, popularity, topTracks, albums}) =>
-                <Artist
-                    id = {id}
-                    type = {type}
-                    key = {id}
-                    name = {name}
-                    popularity = {popularity}
-                    topTracks = {topTracks}
-                    albums = {albums}
-                />
-                )
-            } */}
-        </div>
-    )
+            <h3>{artist.id}</h3>
+            <h3>{artist.name}</h3>
+            <h3>{artist.image}</h3>
+            <h3>{artist.type}</h3>
+            <h3>{artist.popularity}</h3>
+            <h3>{artist.topTracks.map((a) => a.name)}</h3>
+            <h3>{artist.albums.map((a) => a.name)}</h3>
+            <h3>{artist.albums.map((a) => a.image)}</h3>
+          </div>
+      }
+    </div>
+  );
 }

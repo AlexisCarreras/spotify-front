@@ -3,13 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
-import { Favorite } from '@material-ui/icons';
+import {Link} from 'wouter';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -145,16 +144,18 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
 
     if (type == "artist") {
         return (
-            <Card className={classes.root} title={artistName}>
-                <CardActionArea>
-                    <Avatar className={classes.avatarArtist} alt="Artist" src={url} />
-                    <CardContent>
-                        <Typography className={classes.nameArtist} variant="body2" component="h2">
-                            { nameSlice(artistName, 30)}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-            </Card>
+            <Link href={`/profile/artist/${id}`}>
+                <Card className={classes.root} title={artistName}>
+                    <CardActionArea>
+                        <Avatar className={classes.avatarArtist} alt="Artist" src={url} />
+                        <CardContent>
+                            <Typography className={classes.nameArtist} variant="body2" component="h2">
+                                { nameSlice(artistName, 30)}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+            </Link>
         )
     }
     else if (type == "album" || type == "single" || type == "compilation") {

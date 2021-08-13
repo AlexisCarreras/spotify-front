@@ -19,9 +19,8 @@ function App() {
       />
        <Route 
           component={ArtistProfile}
-          path="/:profile" 
+          path="/profile/artist/:id" 
       />
-
       
     </div>
   );
