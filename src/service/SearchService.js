@@ -1,7 +1,7 @@
 
 export default function SearchItem(keyword, value, offset) {
     const ApiUrl = `https://localhost:44395/api/search/${value}?name=${keyword}&offset=${offset}`
-    console.log(ApiUrl)
+    //console.log(ApiUrl)
     const ImgNotFound = "https://coacademy-server-jc.com/uploads/courses/images/890.jpg"
     return fetch(ApiUrl)
             .then(response => response.json())

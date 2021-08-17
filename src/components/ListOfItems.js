@@ -47,7 +47,7 @@ export default function ListOfArtists( { params } ){
     const classes = useStyle();
     const { keyword, value } = params;
 
-    console.log(params)
+    //console.log(params)
 
     const [item, setItem] = useState([]);
 
@@ -55,9 +55,9 @@ export default function ListOfArtists( { params } ){
 
     useEffect(
         function(){
-            console.log(keyword, value, paginacion);
+            //console.log(keyword, value, paginacion);
             SearchService(keyword, value, paginacion).then(item => setItem(item));
-            console.log("aca" + item)
+            //console.log("aca" + item)
         }, 
         [keyword, value, paginacion]
     );
