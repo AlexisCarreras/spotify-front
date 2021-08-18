@@ -14,6 +14,9 @@ const useStyle = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        position: 'fixed',
+        width: '100%',
+        zIndex: '2 !important',
         //boxShadow: '1px 15px 15px grey',
     },
     botonMenu:{
