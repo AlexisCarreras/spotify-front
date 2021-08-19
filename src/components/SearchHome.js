@@ -8,7 +8,7 @@ import SendIcon from '@material-ui/icons/Send';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import { useState } from "react"
 
 const useStyle = makeStyles({
@@ -67,6 +67,8 @@ const SearchHome = () => {
     const [keyword, setKeyword] = useState('')
     const [value, setValue] = useState('artist')
     const [path, pushLocation] = useLocation()
+
+    console.log(path);
 
     const handleSubmit = evt => {
         evt.preventDefault()

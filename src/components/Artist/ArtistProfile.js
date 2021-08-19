@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import ArtistService from "../../service/ArtistService";
+import ArtistAlbumService from "../../service/ArtistAlbumService";
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 const useStyle = makeStyles({
   section1: {
@@ -101,6 +101,9 @@ const useStyle = makeStyles({
     fontSize: '18px',
     color: '#FFFF',
   },
+  buttonAlbum: {
+
+  },
 });
 
 export default function ArtistProfile({params}) {
@@ -108,16 +111,20 @@ export default function ArtistProfile({params}) {
   const { id } = params;
 
   const [artist, setArtist] = useState();
-  
+  const [artistAlbum, setArtistAlbum] = useState();
   const [paginacion, setPaginacion] = useState(0);
 
   useEffect(function () {
-      
-    ArtistService(id, paginacion).then((responseArtist) => setArtist(responseArtist));
+    ArtistService(id).then((responseArtist) => setArtist(responseArtist));
     //console.log(artist);
+  }, [id]);
+
+  useEffect(function () {
+    ArtistAlbumService(id, paginacion).then((responseArtistAlbum) => setArtistAlbum(responseArtistAlbum));
+    // console.log(artistAlbum);
   }, [id, paginacion]);
 
-  //Boton (flecha) para ver los anteriores resultados de Artist y Album
+  //Boton (flecha) para ver los anteriores
   let backButton;
   if(paginacion < 5)
   {
@@ -129,7 +136,7 @@ export default function ArtistProfile({params}) {
   else if(paginacion >= 5) 
   {
       backButton = 
-              <IconButton onClick={() => setPaginacion(paginacion - 5)} className={classes.buttonArtistAlbum} color="secondary" aria-label="arrow netx">
+              <IconButton onClick={() => setPaginacion(paginacion - 5)} className={classes.buttonAlbum} color="secondary" aria-label="arrow netx">
                   <ArrowBackIosIcon />
                </IconButton>
   }
@@ -138,8 +145,8 @@ export default function ArtistProfile({params}) {
     <div>
       {
         artist &&
-        <div className={classes.root}>
-          {console.log(artist)}
+        <div className={classes.root} key={id}>
+          {/* {console.log(artist)} */}
             <section>
               <div className={classes.section1}>
                 <img src={artist.image} className={classes.imgFondo} alt="fondo-perfil"></img>
@@ -149,14 +156,6 @@ export default function ArtistProfile({params}) {
               <div className={classes.section2}>
                 <img src={artist.image} className={classes.imgPerfil} alt="foto-perfil"></img>
                 <h1 className={classes.name}>{artist.name}</h1>
-                {/*<h3>{artist.id}</h3>
-                <h3>{artist.name}</h3>
-                <h3>{artist.image}</h3>
-                <h3>{artist.type}</h3>
-                <h3>{artist.popularity}</h3>
-                <h3>{artist.topTracks.map((a) => a.name)}</h3>
-                <h3>{artist.albums.map((a) => a.name)}</h3>
-                <h3>{artist.albums.map((a) => a.image)}</h3> */}
               </div>
             </section>
 
@@ -167,31 +166,32 @@ export default function ArtistProfile({params}) {
                   {<ul>
                     <h6 className={classes.listaTitulos}>TITULO</h6>
                     {artist.topTracks.map((a) => 
-                    <li className={classes.listaTopTrack}>{a.name}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id}>{a.name}</li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>ARTISTA</h6>
                     {artist.topTracks.map((a) => 
-                    <li className={classes.listaTopTrack}>{artist.name}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id}>{artist.name}</li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>ALBUM</h6>
                     {artist.topTracks.map((a) => 
-                    <li className={classes.listaTopTrack}>{a.albumName}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id}>{a.albumName}</li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>DUR.</h6>
                     {artist.topTracks.map((a) => 
-                    <li className={classes.listaTopTrack}>{a.trackLength}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id}>{a.trackLength}</li>)}
                   </ul>}
                 </div>
               </div>
               <div>
                 <h3 className={classes.tittleTopTrack}>Albums:</h3>
                 <div className={classes.sectionAlbums}>
+                  {backButton}
                   {
-                    artist.albums.map(({name, image}) =>
-                    <div className={classes.contentAlbums}>
+                    artistAlbum.map(({name, image, id}) =>
+                    <div className={classes.contentAlbums} key={id}>
                       <img
                         src={image}
                         className={classes.imgAlbum} 
@@ -203,11 +203,10 @@ export default function ArtistProfile({params}) {
                     </div>
                     )
                   }
+                  <IconButton onClick={() => setPaginacion(paginacion + 5)} className={classes.buttonAlbum} color="secondary" aria-label="arrow netx">
+                    <ArrowForwardIosIcon />
+                  </IconButton>
                 </div>
-                {backButton}
-                <IconButton onClick={() => setPaginacion(paginacion + 5)} className={classes.buttonArtistAlbum} color="secondary" aria-label="arrow netx">
-                  <ArrowForwardIosIcon />
-                </IconButton>
               </div>
             </section>
 
