@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import ArtistService from "../../service/ArtistService";
 import ArtistAlbumService from "../../service/ArtistAlbumService";
+import ArtistTopTrack from "../../service/ArtistTopTrack";
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -41,7 +42,7 @@ const useStyle = makeStyles({
 
   fondo: {
     background: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(51,51,51,1) 0%, rgba(0,0,0,1) 100%)',
-    height: '250vh',
+    height: '140vh',
     marginTop: '40rem',
   },
   tittleTopTrack: {
@@ -112,17 +113,20 @@ export default function ArtistProfile({params}) {
 
   const [artist, setArtist] = useState();
   const [artistAlbum, setArtistAlbum] = useState();
+  const [artistTopTrack, setArtistTopTrack] = useState();
   const [paginacion, setPaginacion] = useState(0);
 
   useEffect(function () {
     ArtistService(id).then((responseArtist) => setArtist(responseArtist));
-    //console.log(artist);
   }, [id]);
 
   useEffect(function () {
     ArtistAlbumService(id, paginacion).then((responseArtistAlbum) => setArtistAlbum(responseArtistAlbum));
-    // console.log(artistAlbum);
   }, [id, paginacion]);
+
+  useEffect(function () {
+    ArtistTopTrack(id).then((responseArtistTopTrack) => setArtistTopTrack(responseArtistTopTrack));
+  }, [id]);
 
   //Boton (flecha) para ver los anteriores
   let backButton;
@@ -144,9 +148,9 @@ export default function ArtistProfile({params}) {
   return (
     <div>
       {
-        artist &&
+        artist && artistAlbum && artistTopTrack &&
         <div className={classes.root} key={id}>
-          {/* {console.log(artist)} */}
+          {console.log(artistTopTrack)}
             <section>
               <div className={classes.section1}>
                 <img src={artist.image} className={classes.imgFondo} alt="fondo-perfil"></img>
@@ -165,22 +169,22 @@ export default function ArtistProfile({params}) {
                 <div className={classes.contentTopTrack}>
                   {<ul>
                     <h6 className={classes.listaTitulos}>TITULO</h6>
-                    {artist.topTracks.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id}>{a.name}</li>)}
+                    {artistTopTrack.map(({name, id}) => 
+                    <li className={classes.listaTopTrack} key={id}>{name}</li>)}
                   </ul>}
-                  {<ul>
+                  {/* {<ul>
                     <h6 className={classes.listaTitulos}>ARTISTA</h6>
                     {artist.topTracks.map((a) => 
                     <li className={classes.listaTopTrack} key={a.id}>{artist.name}</li>)}
-                  </ul>}
+                  </ul>} */}
                   {<ul>
                     <h6 className={classes.listaTitulos}>ALBUM</h6>
-                    {artist.topTracks.map((a) => 
+                    {artistTopTrack.map((a) => 
                     <li className={classes.listaTopTrack} key={a.id}>{a.albumName}</li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>DUR.</h6>
-                    {artist.topTracks.map((a) => 
+                    {artistTopTrack.map((a) => 
                     <li className={classes.listaTopTrack} key={a.id}>{a.trackLength}</li>)}
                   </ul>}
                 </div>
