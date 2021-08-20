@@ -177,25 +177,27 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
     }
     else if (type == "track") {
         return (
-            <Card className={classes.rootTrack} title={trackName}>
-                <CardActionArea className={classes.areaTrack}> 
-                    <Avatar alt="Track" src={url} variant="square" className={classes.avatarTrack} />
-                    <CardContent>
-                        <Typography className={classes.nameTrack} variant="caption" component="h2">
-                            { nameSlice(trackName, 23)}
-                        </Typography>
-                        <Typography className={classes.nameArtistTrack} variant="caption" component="p">
-                            {artistName}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActionArea className={classes.area2}>
-                        {favoriteIcon}
-                        <Typography className={classes.duracion} variant="caption" component="p">
-                            {trackLenght}
-                        </Typography>
-                </CardActionArea>
-            </Card>
+            <Link href={`/profile/track/${id}`}>
+                <Card className={classes.rootTrack} title={trackName}>
+                    <CardActionArea className={classes.areaTrack}> 
+                        <Avatar alt="Track" src={url} variant="square" className={classes.avatarTrack} />
+                        <CardContent>
+                            <Typography className={classes.nameTrack} variant="caption" component="h2">
+                                { nameSlice(trackName, 23)}
+                            </Typography>
+                            <Typography className={classes.nameArtistTrack} variant="caption" component="p">
+                                {artistName}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActionArea className={classes.area2}>
+                            {favoriteIcon}
+                            <Typography className={classes.duracion} variant="caption" component="p">
+                                {trackLenght}
+                            </Typography>
+                    </CardActionArea>
+                </Card>
+            </Link>
         )
     }
 }

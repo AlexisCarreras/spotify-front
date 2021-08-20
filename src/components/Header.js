@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AlbumIcon from '@material-ui/icons/Album';
 import Typography from '@material-ui/core/Typography';
+import {Link} from 'wouter';
 
 const useStyle = makeStyles({
     root: {
@@ -66,7 +67,9 @@ const Header = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose} className={classes.item}>Search</MenuItem>
+                <Link href={`/`}>
+                    <MenuItem onClick={handleClose} className={classes.item}>Search</MenuItem>
+                </Link>
                 <MenuItem onClick={handleClose} className={classes.item}>Favorites</MenuItem>
             </Menu>
 
