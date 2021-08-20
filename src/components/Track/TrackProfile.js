@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from "react";
 import Track from "./Track";
 import TrackService from "../../service/TrackService";
+import TrackFeaturesServices from "../../service/TrackFeaturesServices";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-    fondo: {
-        // background: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(51,51,51,1) 0%, rgba(0,0,0,1) 100%)',
-        // width: '100%',
-        // height: '100%',
-        // paddingTop: '1.5rem',
-        // color: 'white',
-    },
-});
+}); 
 
 export default function ArtistProfile({ params }) {
     const classes = useStyles();
-    const [track, setTrack] = useState();
     const { id } = params;
 
+    const [track, setTrack] = useState();
+    const [trackFeatures, setTrackFeatures] = useState();
+    
     useEffect(function () {
         TrackService(id).then((responseTrack) => setTrack(responseTrack));
+    }, [id]);
+
+    useEffect(function () {
+        TrackFeaturesServices(id).then((responseTrack) => setTrackFeatures(responseTrack));
     }, [id]);
 
     return(
         <div>
             {
-                track &&
-                <div className = {classes.fondo}>
+                track && trackFeatures &&
+                <div>
                     {console.log(track)}
+                    {console.log(trackFeatures)}
                     {
                         <Track 
                             id = {track.id}
@@ -39,19 +40,20 @@ export default function ArtistProfile({ params }) {
                             previewUrl = {track.previewUrl}
                             trackLength = {track.trackLength}
                             favorite = {track.favorite}
-                            key = {track.key}
-                            mode = {track.mode}
-                            tempo = {track.tempo}
-                            acousticness = {track.acousticness}
-                            danceability = {track.danceability}
-                            energy = {track.energy}
-                            instrumentalness = {track.instrumentalness}
-                            liveness = {track.liveness}
-                            speechiness = {track.speechiness}
-                            valence = {track.valence}
+
+                            key = {trackFeatures.key}
+                            mode = {trackFeatures.mode}
+                            tempo = {trackFeatures.tempo}
+                            acousticness = {trackFeatures.acousticness}
+                            danceability = {trackFeatures.danceability}
+                            energy = {trackFeatures.energy}
+                            instrumentalness = {trackFeatures.instrumentalness}
+                            liveness = {trackFeatures.liveness}
+                            speechiness = {trackFeatures.speechiness}
+                            valence = {trackFeatures.valence}
                         />
                     }
-                    {/* <h2>key: {track.key}</h2>  */}
+                    {/* <h2>key: {track.albumName}</h2>  */}
                 </div> 
             }
         </div>
