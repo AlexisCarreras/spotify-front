@@ -94,11 +94,21 @@ const useStyles = makeStyles({
     },
 });
 
+const nameSlice = (name, cantidad) => {
+    console.log(name, cantidad)
+    if (name.length > cantidad) {
+        var nombre = name.substring(0,cantidad)
+        return nombre + "..."
+    }
+    return name;
+}
+
 export default function Album({ id, name, image, type, totalTracks, albumArtist, tracks }) {
     const classes = useStyles();
 
     return (
         <div className = {classes.album}>
+            {console.log(tracks)}
             <section className = {classes.cabecera}>
                 <div className={classes.section1}>
                     <img src={image} className={classes.imgFondo} alt={image}></img>
@@ -120,17 +130,17 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                 {<ul>
                     <h6 className={classes.listaTitulos}>TITULO</h6>
                     {tracks.map((a) => 
-                    <li className={classes.listaTopTrack}  key={a.id}>{a.name}</li>)}
+                    <li className={classes.listaTopTrack}  key={a.id}>{nameSlice(a.name, 30)}</li>)} 
                 </ul>}
                 {<ul>
                     <h6 className={classes.listaTitulos}>ARTISTA</h6>
                     {tracks.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id}>{albumArtist}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id}>{nameSlice(albumArtist, 30)}</li>)}
                 </ul>}
                 {<ul>
                     <h6 className={classes.listaTitulos}>ALBUM</h6>
                     {tracks.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id}>{name}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id}>{nameSlice(name, 30)}</li>)}
                 </ul>}
                 {<ul>
                     <h6 className={classes.listaTitulos}>DUR.</h6>
@@ -142,7 +152,7 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                     {tracks.map((a) => 
                     <audio className={classes.audio} controls key={a.id} src={a.previewUrl}></audio>)}
                 </ul>}
-                {console.log(tracks)}
+                {/* {console.log(tracks)} */}
             </section>
         </div>
 
