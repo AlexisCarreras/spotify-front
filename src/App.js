@@ -3,6 +3,7 @@ import Home from './components/Home';
 import ListOfItems from './components/ListOfItems';
 import ArtistProfile from './components/Artist/ArtistProfile';
 import TrackProfile from './components/Track/TrackProfile';
+import AlbumProfile from './components/Album/AlbumProfile';
 import { Route } from "wouter";
 
 
@@ -26,6 +27,11 @@ function App() {
           component={TrackProfile}
           path="/profile/track/:id" 
       />
+       <Route 
+          component={AlbumProfile}
+          path="/profile/album/:id" 
+      />
+      
     </div>
   );
 }

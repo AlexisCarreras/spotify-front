@@ -107,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const nameSlice = (name, cantidad) => {
-    console.log(name, cantidad)
+    //console.log(name, cantidad)
     if (name.length > cantidad) {
         var nombre = name.substring(0,cantidad)
         return nombre + "..."
@@ -160,19 +160,21 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
     }
     else if (type === "album" || type === "single" || type === "compilation") {
         return (
-            <Card className={classes.root} title={albumName}>
-                <CardActionArea>
-                    <Avatar alt="Album" src={url} variant="square" className={classes.avatarAlbum} />
-                    <CardContent>
-                        <Typography className={classes.nameAlbum} variant="body2" component="h2">
-                            { nameSlice(albumName, 25)}
-                        </Typography>
-                        <Typography className={classes.nameAlbumArtist} variant="caption" component="p">
-                            {artistName}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-            </Card>
+            <Link href={`/profile/album/${id}`}>
+                <Card className={classes.root} title={albumName}>
+                    <CardActionArea>
+                        <Avatar alt="Album" src={url} variant="square" className={classes.avatarAlbum} />
+                        <CardContent>
+                            <Typography className={classes.nameAlbum} variant="body2" component="h2">
+                                { nameSlice(albumName, 25)}
+                            </Typography>
+                            <Typography className={classes.nameAlbumArtist} variant="caption" component="p">
+                                {artistName}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+            </Link>
         )
     }
     else if (type === "track") {
