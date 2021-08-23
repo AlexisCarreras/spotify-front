@@ -50,7 +50,7 @@ const useStyle = makeStyles({
     fontSize: '25px',
     color: '#FFFF',
     display: 'flex',
-    paddingTop: '7rem',
+    paddingTop: '8rem',
     marginBottom: '1rem',
     justifyContent: 'center',
   },
@@ -92,7 +92,7 @@ const useStyle = makeStyles({
 
   },
   contentAlbums: {
-
+    marginRight: '3.5rem',
   },
   imgAlbum: {
     width: '200px',
@@ -103,7 +103,8 @@ const useStyle = makeStyles({
     color: '#FFFF',
   },
   buttonAlbum: {
-
+    marginTop: 'auto',
+    marginBottom: 'auto',
   },
 });
 
@@ -209,8 +210,8 @@ export default function ArtistProfile({params}) {
                         className={classes.imgAlbum} 
                         alt="img-album"
                       />
-                      <Typography className={classes.nameAlbum} variant="body1" gutterBottom>
-                        {name}
+                      <Typography className={classes.nameAlbum} title={name} variant="body1" gutterBottom>
+                      {nameSlice(name, 20)}
                       </Typography>
                     </div>
                     )

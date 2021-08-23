@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
         width: '70%',
         marginBottom: '0.5rem',
         display: 'flex',
-        //flexDirection: 'row',
         position: 'relative',
         borderRadius: '20px',
         background: 'rgba(85, 85, 85, 0.7)',
@@ -75,8 +74,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'flex-start',
     },
     avatarTrack: {
-        //margin: 'auto',
-        //marginTop: '1rem',
         width: theme.spacing(11),
         height: theme.spacing(11),
     },
@@ -107,7 +104,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const nameSlice = (name, cantidad) => {
-    //console.log(name, cantidad)
     if (name.length > cantidad) {
         var nombre = name.substring(0,cantidad)
         return nombre + "..."
