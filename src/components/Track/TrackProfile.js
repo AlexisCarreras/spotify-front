@@ -41,7 +41,7 @@ export default function ArtistProfile({ params }) {
                             trackLength = {track.trackLength}
                             favorite = {track.favorite}
 
-                            key = {trackFeatures.key}
+                            nota = {trackFeatures.key}
                             mode = {trackFeatures.mode}
                             tempo = {trackFeatures.tempo}
                             acousticness = {trackFeatures.acousticness}
@@ -52,8 +52,7 @@ export default function ArtistProfile({ params }) {
                             speechiness = {trackFeatures.speechiness}
                             valence = {trackFeatures.valence}
                         />
-                    }
-                    {/* <h2>key: {track.albumName}</h2>  */}
+                    } 
                 </div> 
             }
         </div>

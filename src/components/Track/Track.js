@@ -19,6 +19,7 @@ import Slide from '@material-ui/core/Slide';
 const useStyles = makeStyles((theme) => ({
     root: {
         color: '#FFF',
+        height: '100vh'
     },
     cabecera: {
 
@@ -156,7 +157,7 @@ const useStyles = makeStyles((theme) => ({
     return <Slide direction="up" ref={ref} {...props} />;
   });
   
-  export default function Album({ id, type, name, albumName, artistName, image, previewUrl, trackLength, favorite, key, mode, tempo, acousticness, danceability, energy, instrumentalness, liveness, speechiness, valence }) {
+  export default function Album({ id, type, name, albumName, artistName, image, previewUrl, trackLength, favorite, nota, mode, tempo, acousticness, danceability, energy, instrumentalness, liveness, speechiness, valence }) {
       const classes = useStyles();
 
       const [open, setOpen] = React.useState(false);
@@ -193,7 +194,7 @@ const useStyles = makeStyles((theme) => ({
                         <div className = {classes.contentAcorde}>
                             <div className = {classes.contentNota}>
                                 <MusicNoteIcon style={{ fontSize: 90 }} className = {classes.icono} />
-                                <h3 className = {classes.acorde}>{key} {mode}</h3>
+                                <h3 className = {classes.acorde}>{nota} {mode}</h3>
                             </div>
                             <div className = {classes.contentTempo}>
                                 <TimerIcon style={{ fontSize: 90 }} className = {classes.icono} />
