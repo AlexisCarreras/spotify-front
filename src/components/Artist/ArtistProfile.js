@@ -146,7 +146,6 @@ export default function ArtistProfile({params}) {
   }
 
   const nameSlice = (name, cantidad) => {
-    console.log(name, cantidad)
     if (name.length > cantidad) {
         var nombre = name.substring(0,cantidad)
         return nombre + "..."
@@ -179,17 +178,17 @@ export default function ArtistProfile({params}) {
                   {<ul>
                     <h6 className={classes.listaTitulos}>TITULO</h6>
                     {artistTopTrack.map(({name, id}) => 
-                    <li className={classes.listaTopTrack} key={id}>{nameSlice(name, 30)}</li>)}
+                    <li className={classes.listaTopTrack} key={id} title={name}>{nameSlice(name, 30)}</li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>ARTISTA</h6>
                     {artistTopTrack.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id}>{nameSlice(artist.name, 30)}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id} title={artist.name}>{nameSlice(artist.name, 30)}</li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>ALBUM</h6>
                     {artistTopTrack.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id}>{nameSlice(a.albumName, 30)}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id} title={a.albumName}>{nameSlice(a.albumName, 30)}</li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>DUR.</h6>

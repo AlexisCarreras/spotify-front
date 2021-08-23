@@ -1,28 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import TimerIcon from '@material-ui/icons/Timer';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import IconButton from '@material-ui/core/IconButton';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         color: '#FFF',
-        height: '100vh'
+        height: '100vh',
     },
     cabecera: {
-
+        paddingTop: '3rem',
     },
     section1: {
         backgroundColor: '#111',
@@ -126,25 +124,14 @@ const useStyles = makeStyles((theme) => ({
     nombreFeature: {
         marginBottom: '5rem',
     },
-    contenedorInfoFeatures: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-        padding: '1rem 1rem 1rem 1rem',
-        marginTop: '0.5rem',
-        marginRight: '12rem',
-    },
-    appBar: {
-        position: 'relative',
-      },
-      title: {
-        marginLeft: theme.spacing(2),
-        flex: 1,
+    iconoHelp: {
+        color: '#FFFF',
     },
 
     footer: {
         display: 'flex',
         alignItems: 'end',
-        marginTop: '4rem',
+        marginTop: '8rem',
     },
     audio: {
         position: 'relative',
@@ -152,23 +139,87 @@ const useStyles = makeStyles((theme) => ({
 
     },
 }));
-
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
   
   export default function Album({ id, type, name, albumName, artistName, image, previewUrl, trackLength, favorite, nota, mode, tempo, acousticness, danceability, energy, instrumentalness, liveness, speechiness, valence }) {
       const classes = useStyles();
 
-      const [open, setOpen] = React.useState(false);
+      const nameSlice = (name, cantidad) => {
+        if (name.length > cantidad) {
+            var nombre = name.substring(0,cantidad)
+            return nombre + "..."
+        }
+        return name;
+    }
 
-      const handleClickOpen = () => {
-        setOpen(true);
-      };
+    const [open1, setOpen1] = React.useState(false);
 
-      const handleClose = () => {
-        setOpen(false);
-      };
+    const handleClickOpen1 = () => {
+      setOpen1(true);
+    };
+
+    const handleClose1 = () => {
+      setOpen1(false);
+    };
+
+    const [open2, setOpen2] = React.useState(false);
+
+    const handleClickOpen2 = () => {
+      setOpen2(true);
+    };
+
+    const handleClose2 = () => {
+      setOpen2(false);
+    };
+
+    const [open3, setOpen3] = React.useState(false);
+
+    const handleClickOpen3 = () => {
+      setOpen3(true);
+    };
+
+    const handleClose3 = () => {
+      setOpen3(false);
+    };
+
+    const [open4, setOpen4] = React.useState(false);
+
+    const handleClickOpen4 = () => {
+      setOpen4(true);
+    };
+
+    const handleClose4 = () => {
+      setOpen4(false);
+    };
+
+    const [open5, setOpen5] = React.useState(false);
+
+    const handleClickOpen5 = () => {
+      setOpen5(true);
+    };
+
+    const handleClose5 = () => {
+      setOpen5(false);
+    };
+
+    const [open6, setOpen6] = React.useState(false);
+
+    const handleClickOpen6 = () => {
+      setOpen6(true);
+    };
+
+    const handleClose6 = () => {
+      setOpen6(false);
+    };
+
+    const [open7, setOpen7] = React.useState(false);
+
+    const handleClickOpen7 = () => {
+      setOpen7(true);
+    };
+
+    const handleClose7 = () => {
+      setOpen7(false);
+    };
 
     return(
         <div className={classes.root}>
@@ -185,9 +236,9 @@ const useStyles = makeStyles((theme) => ({
                                 <img className = {classes.albumImg} src={image} alt={name}></img>
                             </div>
                             <div className = {classes.contentTrackTittle}>
-                                <h2 className = {classes.name}>{name}</h2>
+                                <h2 className = {classes.name} title={name}>{nameSlice(name, 30)}</h2>
                                 <h3 className = {classes.trackLength}>{trackLength}</h3>
-                                <h3 className = {classes.albumName}>{albumName}</h3>
+                                <h3 className = {classes.albumName} title={albumName}>{nameSlice(albumName, 30)}</h3>
                                 <h3 className = {classes.artistName}>{artistName}</h3>
                             </div>
                         </div>
@@ -207,102 +258,189 @@ const useStyles = makeStyles((theme) => ({
                         <div className = {classes.features1}>
                             <Slider className = {classes.slider} value={danceability} color="secondary" max = "1000" valueLabelDisplay="on" />
                             <Typography className = {classes.nombreFeature} variant="h5" id="discrete-slider-always" gutterBottom>
-                                Danceability
+                                Danceability 
+                                <IconButton className={classes.iconoHelp} onClick={handleClickOpen1} aria-label="HelpOutlineIcon">
+                                    <HelpOutlineIcon fontSize="small" />
+                                </IconButton>
                             </Typography>
+                            <Dialog
+                                open={open1}
+                                onClose={handleClose1}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Danceability"}</DialogTitle>
+                                <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    La capacidad de baile describe qué tan adecuada es una pista para bailar en función de una combinación de elementos musicales que incluyen el tempo, la estabilidad del ritmo, la fuerza del ritmo y la regularidad general. Un valor de 0 es menos bailable y 1000 es más bailable.
+                                </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                <Button onClick={handleClose1} color="secondary" autoFocus>
+                                    Cerrar
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
 
                             <Slider value={energy} color="secondary" max = "1000" valueLabelDisplay="on" />
                             <Typography className = {classes.nombreFeature} variant="h5" id="discrete-slider-always" gutterBottom>
                                 Energy
+                                <IconButton className={classes.iconoHelp} onClick={handleClickOpen2} aria-label="HelpOutlineIcon">
+                                    <HelpOutlineIcon fontSize="small" />
+                                </IconButton>
                             </Typography>
+                            <Dialog
+                                open={open2}
+                                onClose={handleClose2}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Energy"}</DialogTitle>
+                                <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    La energía es una medida de 0 a 1000 y representa una medida de percepción de intensidad y actividad. Por lo general, las pistas enérgicas se sienten rápidas y ruidosas. Las características de percepción que contribuyen a este atributo incluyen rango dinámico, volumen percibido, timbre, frecuencia de inicio y entropía general.
+                                </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                <Button onClick={handleClose2} color="secondary" autoFocus>
+                                    Cerrar
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
 
                             <Slider value={instrumentalness} color="secondary" max = "1000" valueLabelDisplay="on" />
                             <Typography className = {classes.nombreFeature} variant="h5" id="discrete-slider-always" gutterBottom>
                                 Instrumentalness
+                                <IconButton className={classes.iconoHelp} onClick={handleClickOpen3} aria-label="HelpOutlineIcon">
+                                    <HelpOutlineIcon fontSize="small" />
+                                </IconButton>
                             </Typography>
+                            <Dialog
+                                open={open3}
+                                onClose={handleClose3}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Instrumentalness"}</DialogTitle>
+                                <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Predice si una pista no contiene voces. Los sonidos “Ooh” y “aah” se tratan como instrumentales en este contexto. Cuanto más cercano esté el valor de instrumentalidad a 1000, mayor será la probabilidad de que la pista no contenga contenido vocal. Los valores superiores a 500 están destinados a representar pistas instrumentales, pero la confianza es mayor a medida que el valor se acerca a 1000.
+                                </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                <Button onClick={handleClose3} color="secondary" autoFocus>
+                                    Cerrar
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
 
                             <Slider value={valence} color="secondary" max = "1000" valueLabelDisplay="on" />
                             <Typography variant="h5" id="discrete-slider-always" gutterBottom>
                                 Valence
+                                <IconButton className={classes.iconoHelp} onClick={handleClickOpen4} aria-label="HelpOutlineIcon">
+                                    <HelpOutlineIcon fontSize="small" />
+                                </IconButton>
                             </Typography>
+                            <Dialog
+                                open={open4}
+                                onClose={handleClose4}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Valence"}</DialogTitle>
+                                <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Una medida de 0 a 1000 que describe la positividad musical que transmite una pista. Las pistas con valencia alta suenan más positivas (por ejemplo, feliz, alegre, eufórico), mientras que las pistas con valencia baja suenan más negativas (por ejemplo, triste, deprimido, enojado).
+                                </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                <Button onClick={handleClose4} color="secondary" autoFocus>
+                                    Cerrar
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
                         </div>
                         <div className = {classes.features2}>
                             <Slider value={liveness} color="secondary" max = "1000" valueLabelDisplay="on" />
                             <Typography className = {classes.nombreFeature} variant="h5" id="discrete-slider-always" gutterBottom>
                                 Liveness
+                                <IconButton className={classes.iconoHelp} onClick={handleClickOpen5} aria-label="HelpOutlineIcon">
+                                    <HelpOutlineIcon fontSize="small" />
+                                </IconButton>
                             </Typography>
+                            <Dialog
+                                open={open5}
+                                onClose={handleClose5}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Liveness"}</DialogTitle>
+                                <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Detecta la presencia de una audiencia en la grabación. Los valores de vivacidad más altos representan una mayor probabilidad de que la pista se haya interpretado en vivo. Un valor superior a 800 proporciona una gran probabilidad de que la pista esté en vivo.
+                                </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                <Button onClick={handleClose5} color="secondary" autoFocus>
+                                    Cerrar
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
 
                             <Slider value={acousticness} color="secondary" max = "1000" valueLabelDisplay="on" />
                             <Typography className = {classes.nombreFeature} variant="h5" id="discrete-slider-always" gutterBottom>
                                 Acousticness
+                                <IconButton className={classes.iconoHelp} onClick={handleClickOpen6} aria-label="HelpOutlineIcon">
+                                    <HelpOutlineIcon fontSize="small" />
+                                </IconButton>
                             </Typography>
+                            <Dialog
+                                open={open6}
+                                onClose={handleClose6}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Acousticness"}</DialogTitle>
+                                <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Una medida de confianza de 0 a 1000 de si la pista es acústica. 1000 representa una alta confianza en que la pista es acústica.
+                                </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                <Button onClick={handleClose6} color="secondary" autoFocus>
+                                    Cerrar
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
 
                             <Slider value={speechiness} color="secondary" max = "1000" valueLabelDisplay="on" />
                             <Typography className = {classes.nombreFeature} variant="h5" id="discrete-slider-always" gutterBottom>
                                 Speechiness
+                                <IconButton className={classes.iconoHelp} onClick={handleClickOpen7} aria-label="HelpOutlineIcon">
+                                    <HelpOutlineIcon fontSize="small" />
+                                </IconButton>
                             </Typography>
+                            <Dialog
+                                open={open7}
+                                onClose={handleClose7}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Speechiness"}</DialogTitle>
+                                <DialogContent>
+                                <DialogContentText id="alert-dialog-description">
+                                    Speechiness detecta la presencia de palabras habladas en una pista. Cuanto más exclusivamente parecida a un discurso sea la grabación más cercano a 1000 será el valor del atributo. <br/>Los valores superiores a 660 describen pistas que probablemente estén compuestas en su totalidad por palabras habladas. <br/>Los valores entre 330 y 660 describen pistas que pueden contener tanto música como voz, ya sea en secciones o en capas, incluidos casos como la música rap. <br/>Los valores por debajo de 330 probablemente representen música y otras pistas que no se parecen al habla.
+                                </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                <Button onClick={handleClose7} color="secondary" autoFocus>
+                                    Cerrar
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
                         </div>
                     </article>
                 </section>
-                <div className={classes.contenedorInfoFeatures}>
-                    <Button className={classes.contenedorInfoFeatures} variant="contained" size="large" color="secondary" onClick={handleClickOpen}>
-                        Ver Info de Features
-                    </Button>
-                    <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-                        <AppBar color="secondary" className={classes.appBar}>
-                        <Toolbar>
-                            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                            <CloseIcon />
-                            </IconButton>
-                            <Typography variant="h6" className={classes.title}>
-                                Features
-                            </Typography>
-                        </Toolbar>
-                        </AppBar>
-                        <List>
-                            <ListItem>
-                                <ListItemText 
-                                    primary="Acousticness" 
-                                    secondary="Una medida de confianza de 0 a 1000 de si la pista es acústica. 1000 representa una alta confianza en que la pista es acústica." />
-                            </ListItem>
-                            <Divider />
-                            <ListItem>
-                                <ListItemText 
-                                    primary="Danceability" 
-                                    secondary="La capacidad de baile describe qué tan adecuada es una pista para bailar en función de una combinación de elementos musicales que incluyen el tempo, la estabilidad del ritmo, la fuerza del ritmo y la regularidad general. Un valor de 0 es menos bailable y 1000 es más bailable." />
-                            </ListItem>
-                            <Divider />
-                            <ListItem>
-                                <ListItemText 
-                                    primary="Energy" 
-                                    secondary="La energía es una medida de 0 a 1000 y representa una medida de percepción de intensidad y actividad. Por lo general, las pistas enérgicas se sienten rápidas, ruidosas y ruidosas. Las características de percepción que contribuyen a este atributo incluyen rango dinámico, volumen percibido, timbre, frecuencia de inicio y entropía general." />
-                            </ListItem>
-                            <Divider />
-                            <ListItem>
-                                <ListItemText 
-                                    primary="Instrumentalness" 
-                                    secondary="Predice si una pista no contiene voces. Los sonidos “Ooh” y “aah” se tratan como instrumentales en este contexto. Las pistas de rap o de palabra hablada son claramente 'vocales'. Cuanto más cercano esté el valor de instrumentalidad a 1000, mayor será la probabilidad de que la pista no contenga contenido vocal. Los valores superiores a 500 están destinados a representar pistas instrumentales, pero la confianza es mayor a medida que el valor se acerca a 1000." />
-                            </ListItem>
-                            <Divider />
-                            <ListItem>
-                                <ListItemText 
-                                    primary="Liveness" 
-                                    secondary="Detecta la presencia de una audiencia en la grabación. Los valores de vivacidad más altos representan una mayor probabilidad de que la pista se haya interpretado en vivo. Un valor superior a 800 proporciona una gran probabilidad de que la pista esté activa." />
-                            </ListItem>
-                            <Divider />
-                            <ListItem>
-                                <ListItemText 
-                                    primary="Speechiness" 
-                                    secondary="Detecta la presencia de palabras habladas en una pista. Cuanto más exclusivamente parecida a un discurso sea la grabación (por ejemplo, programa de entrevistas, audiolibro, poesía), más cercano a 1000 será el valor del atributo." />
-                            </ListItem>
-                            <Divider />
-                            <ListItem>
-                                <ListItemText 
-                                    primary="Valence" 
-                                    secondary="Una medida de 0 a 1000 que describe la positividad musical que transmite una pista. Las pistas con valencia alta suenan más positivas (por ejemplo, feliz, alegre, eufórico), mientras que las pistas con valencia baja suenan más negativas (por ejemplo, triste, deprimido, enojado)." />
-                            </ListItem>
-                        </List>
-                    </Dialog>
-                </div>
             </section>
 
             <section className = {classes.footer}>

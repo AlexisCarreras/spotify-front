@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import Track from "./Track";
 import TrackService from "../../service/TrackService";
 import TrackFeaturesServices from "../../service/TrackFeaturesServices";
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-}); 
+// const useStyles = makeStyles({
+// }); 
 
 export default function ArtistProfile({ params }) {
-    const classes = useStyles();
+    // const classes = useStyles();
     const { id } = params;
 
     const [track, setTrack] = useState();

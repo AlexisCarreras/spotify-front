@@ -95,7 +95,6 @@ const useStyles = makeStyles({
 });
 
 const nameSlice = (name, cantidad) => {
-    console.log(name, cantidad)
     if (name.length > cantidad) {
         var nombre = name.substring(0,cantidad)
         return nombre + "..."
@@ -130,17 +129,17 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                 {<ul>
                     <h6 className={classes.listaTitulos}>TITULO</h6>
                     {tracks.map((a) => 
-                    <li className={classes.listaTopTrack}  key={a.id}>{nameSlice(a.name, 30)}</li>)} 
+                    <li className={classes.listaTopTrack} key={a.id} title={a.name}>{nameSlice(a.name, 30)}</li>)} 
                 </ul>}
                 {<ul>
                     <h6 className={classes.listaTitulos}>ARTISTA</h6>
                     {tracks.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id}>{nameSlice(albumArtist, 30)}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id} title={albumArtist}>{nameSlice(albumArtist, 30)}</li>)}
                 </ul>}
                 {<ul>
                     <h6 className={classes.listaTitulos}>ALBUM</h6>
                     {tracks.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id}>{nameSlice(name, 30)}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id} title={name}>{nameSlice(name, 30)}</li>)}
                 </ul>}
                 {<ul>
                     <h6 className={classes.listaTitulos}>DUR.</h6>
