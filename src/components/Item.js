@@ -129,7 +129,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
       };
 
     let favoriteIcon
-    if(open==false){
+    if(open===false){
         favoriteIcon =
             <IconButton onClick={handleOpen} aria-label="iconStart">
                 <StarBorderIcon className={classes.favoriteIconFalse} />
@@ -142,7 +142,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
             </IconButton>
     }
 
-    if (type == "artist") {
+    if (type === "artist") {
         return (
             <Link href={`/profile/artist/${id}`}>
                 <Card className={classes.root} title={artistName}>
@@ -158,7 +158,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
             </Link>
         )
     }
-    else if (type == "album" || type == "single" || type == "compilation") {
+    else if (type === "album" || type === "single" || type === "compilation") {
         return (
             <Card className={classes.root} title={albumName}>
                 <CardActionArea>
@@ -175,7 +175,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
             </Card>
         )
     }
-    else if (type == "track") {
+    else if (type === "track") {
         return (
             <Link href={`/profile/track/${id}`}>
                 <Card className={classes.rootTrack} title={trackName}>

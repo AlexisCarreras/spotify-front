@@ -2,7 +2,6 @@ import React from 'react';
 import SearchHome from './SearchHome'; 
 import img from '../img/fondo.jpg';
 import { makeStyles } from '@material-ui/core/styles';
-import SearchArtist from '../service/SearchService';
 
 const useStyle = makeStyles({
     root: {
