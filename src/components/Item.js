@@ -12,8 +12,8 @@ import {Link} from 'wouter';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: '13rem',
-        width: '9rem',
+        height: '15rem',
+        width: '11rem',
         position: 'relative',
         borderRadius: '20px',
         background: 'rgba(85, 85, 85, 0.7)',
@@ -22,12 +22,13 @@ const useStyles = makeStyles((theme) => ({
         },
         marginRight: '1rem',
         marginLeft: '1rem',
+        boxShadow: '9px 9px 16px',
     },
     avatarArtist : {
         margin: 'auto',
         marginTop: '1rem',
-        width: theme.spacing(12),
-        height: theme.spacing(12),
+        width: theme.spacing(15),
+        height: theme.spacing(15),
     },
     img: {
         margin: 'auto',
@@ -39,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
     avatarAlbum: {
         margin: 'auto',
         marginTop: '1rem',
-        width: theme.spacing(11),
-        height: theme.spacing(11),
+        width: theme.spacing(17),
+        height: theme.spacing(17),
     },
     nameArtist: {
         color: 'white',
@@ -58,9 +59,9 @@ const useStyles = makeStyles((theme) => ({
     },
 
     rootTrack: {
-        height: '3rem',
+        height: '4rem',
         width: '70%',
-        marginBottom: '0.5rem',
+        marginBottom: '0.8rem',
         display: 'flex',
         position: 'relative',
         borderRadius: '20px',
@@ -68,14 +69,15 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             background: 'rgba(34, 34, 34, 0.65)',
         },
+        boxShadow: '9px 9px 16px',
     },
     areaTrack: {
         display: 'flex',
         justifyContent: 'flex-start',
     },
     avatarTrack: {
-        width: theme.spacing(11),
-        height: theme.spacing(11),
+        width: theme.spacing(14),
+        height: theme.spacing(14),
     },
     nameTrack: {
         color: '#FFFF',
@@ -181,7 +183,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
                         <Avatar alt="Track" src={url} variant="square" className={classes.avatarTrack} />
                         <CardContent>
                             <Typography className={classes.nameTrack} variant="caption" component="h2">
-                                { nameSlice(trackName, 23)}
+                                { nameSlice(trackName, 45)}
                             </Typography>
                             <Typography className={classes.nameArtistTrack} variant="caption" component="p">
                                 {artistName}

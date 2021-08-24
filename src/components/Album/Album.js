@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import {Link} from 'wouter';
 
 const useStyles = makeStyles({
     album:{
@@ -48,6 +49,8 @@ const useStyles = makeStyles({
         paddingBottom: '1rem',
         fontSize: '60px',
         color: '#fff',
+        cursor: 'default',
+        userSelect: 'none',
     },
     albumArtist:{
         margin: 0,
@@ -59,6 +62,8 @@ const useStyles = makeStyles({
         margin: 0,
         fontSize: '18px',
         color: '#fff',
+        cursor: 'default',
+        userSelect: 'none',
     },
 
     trackList:{
@@ -71,6 +76,8 @@ const useStyles = makeStyles({
         color: '#888',
         listStyle: 'none',
         marginBottom: '2rem',
+        cursor: 'default',
+        userSelect: 'none',
     },
     listaTopTrack: {
         fontSize: '18px',
@@ -79,6 +86,8 @@ const useStyles = makeStyles({
         listStyle: 'none',
         marginBottom: '1rem',
         height: '50px',
+        cursor: 'default',
+        userSelect: 'none',
     },
     preview: {
         fontSize: '15px',
@@ -86,11 +95,21 @@ const useStyles = makeStyles({
         marginLeft: '5rem',
         listStyle: 'none',
         marginBottom: '0rem',
+        cursor: 'default',
+        userSelect: 'none',
     },
     audio: {
         display: 'block',
     	height: '66px',
         margin: 0,
+    },
+    links: {
+        textDecoration: 'none',
+        color: '#FFF',
+        '&:hover': {
+          background: 'rgba(245, 0, 87, 0.8)',
+          //textDecoration: 'underline rgba(245, 0, 87, 0.8)',
+        },
     },
 });
 
@@ -107,7 +126,6 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
 
     return (
         <div className = {classes.album}>
-            {console.log(tracks)}
             <section className = {classes.cabecera}>
                 <div className={classes.section1}>
                     <img src={image} className={classes.imgFondo} alt={image}></img>
@@ -129,7 +147,9 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                 {<ul>
                     <h6 className={classes.listaTitulos}>TITULO</h6>
                     {tracks.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id} title={a.name}>{nameSlice(a.name, 30)}</li>)} 
+                    <li className={classes.listaTopTrack} key={a.id} title={a.name}>
+                        <Link href={`/profile/track/${a.id}`} className={classes.links}>{nameSlice(a.name, 30)}</Link>
+                    </li>)} 
                 </ul>}
                 {<ul>
                     <h6 className={classes.listaTitulos}>ARTISTA</h6>
@@ -139,7 +159,9 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                 {<ul>
                     <h6 className={classes.listaTitulos}>ALBUM</h6>
                     {tracks.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id} title={name}>{nameSlice(name, 30)}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id} title={name}>
+                        <Link href={`/profile/album/${id}`} className={classes.links}>{nameSlice(name, 30)}</Link>
+                    </li>)}
                 </ul>}
                 {<ul>
                     <h6 className={classes.listaTitulos}>DUR.</h6>
@@ -147,11 +169,10 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                     <li className={classes.listaTopTrack} key={a.id}>{a.trackLength}</li>)}
                 </ul>}
                 {<ul>
-                    <h6 className={classes.preview}>PREVIEW.</h6>
+                    <h6 className={classes.preview}>PREVIEW</h6>
                     {tracks.map((a) => 
                     <audio className={classes.audio} controls key={a.id} src={a.previewUrl}></audio>)}
                 </ul>}
-                {/* {console.log(tracks)} */}
             </section>
         </div>
 

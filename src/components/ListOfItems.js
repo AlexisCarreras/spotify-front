@@ -27,8 +27,16 @@ const useStyle = makeStyles({
         margin: 'auto',
     },
 
+    rootTrack: {
+        width: '100%',
+        marginTop: '6rem',
+    },
     itemsTrack: {
-        marginLeft: '20rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '80%',
+        margin: 'auto',
     },
     topButtonTrack: {
         width: '100%',

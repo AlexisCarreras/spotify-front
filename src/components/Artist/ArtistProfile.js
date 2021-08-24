@@ -66,6 +66,8 @@ const useStyle = makeStyles({
     marginLeft: '4rem',
     listStyle: 'none',
     marginBottom: '2rem',
+    cursor: 'default',
+    userSelect: 'none',
   },
   contentTopTrack: {
     display: 'flex',
@@ -93,7 +95,8 @@ const useStyle = makeStyles({
 
   },
   contentAlbums: {
-    marginRight: '3.5rem',
+    marginRight: '1.7rem',
+    marginLeft: '1.7rem',
   },
   imgAlbum: {
     width: '200px',
@@ -114,7 +117,7 @@ const useStyle = makeStyles({
     '&:hover': {
       background: 'rgba(245, 0, 87, 0.8)',
       //textDecoration: 'underline rgba(245, 0, 87, 0.8)',
-  },
+    },
   },
 });
 
