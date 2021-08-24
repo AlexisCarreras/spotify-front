@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import {Link} from 'wouter';
 
 const useStyle = makeStyles({
   section1: {
@@ -106,6 +107,15 @@ const useStyle = makeStyles({
     marginTop: 'auto',
     marginBottom: 'auto',
   },
+
+  links: {
+    textDecoration: 'none',
+    color: '#FFF',
+    '&:hover': {
+      background: 'rgba(245, 0, 87, 0.8)',
+      //textDecoration: 'underline rgba(245, 0, 87, 0.8)',
+  },
+  },
 });
 
 export default function ArtistProfile({params}) {
@@ -179,17 +189,22 @@ export default function ArtistProfile({params}) {
                   {<ul>
                     <h6 className={classes.listaTitulos}>TITULO</h6>
                     {artistTopTrack.map(({name, id}) => 
-                    <li className={classes.listaTopTrack} key={id} title={name}>{nameSlice(name, 30)}</li>)}
+                    <li className={classes.listaTopTrack} key={id} title={name}>
+                      <Link href={`/profile/track/${id}`} className={classes.links}>{nameSlice(name, 30)}</Link>
+                    </li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>ARTISTA</h6>
+                    {console.log(artist.id)}
                     {artistTopTrack.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id} title={artist.name}>{nameSlice(artist.name, 30)}</li>)}
+                    <li className={classes.listaTopTrack} key={a.id} title={artist.name}>
+                      <Link href={`/profile/artist/${artist.id}`} className={classes.links}>{nameSlice(artist.name, 30)}</Link>
+                    </li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>ALBUM</h6>
                     {artistTopTrack.map((a) => 
-                    <li className={classes.listaTopTrack} key={a.id} title={a.albumName}>{nameSlice(a.albumName, 30)}</li>)}
+                      <li className={classes.listaTopTrack} key={a.id} title={a.albumName}>{nameSlice(a.albumName, 30)}</li>)}
                   </ul>}
                   {<ul>
                     <h6 className={classes.listaTitulos}>DUR.</h6>
@@ -205,14 +220,16 @@ export default function ArtistProfile({params}) {
                   {
                     artistAlbum.map(({name, image, id}) =>
                     <div className={classes.contentAlbums} key={id}>
-                      <img
-                        src={image}
-                        className={classes.imgAlbum} 
-                        alt="img-album"
-                      />
-                      <Typography className={classes.nameAlbum} title={name} variant="body1" gutterBottom>
-                      {nameSlice(name, 20)}
-                      </Typography>
+                      <Link href={`/profile/album/${id}`} className={classes.links}>
+                        <img
+                          src={image}
+                          className={classes.imgAlbum} 
+                          alt="img-album"
+                        />
+                        <Typography className={classes.nameAlbum} title={name} variant="body1" gutterBottom>
+                          {nameSlice(name, 20)}
+                        </Typography>
+                      </Link>
                     </div>
                     )
                   }

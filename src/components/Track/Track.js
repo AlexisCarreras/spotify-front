@@ -236,9 +236,9 @@ const useStyles = makeStyles((theme) => ({
                                 <img className = {classes.albumImg} src={image} alt={name}></img>
                             </div>
                             <div className = {classes.contentTrackTittle}>
-                                <h2 className = {classes.name} title={name}>{nameSlice(name, 30)}</h2>
+                                <h2 className = {classes.name} title={name}>{nameSlice(name, 35)}</h2>
                                 <h3 className = {classes.trackLength}>{trackLength}</h3>
-                                <h3 className = {classes.albumName} title={albumName}>{nameSlice(albumName, 30)}</h3>
+                                <h3 className = {classes.albumName} title={albumName}>{nameSlice(albumName, 35)}</h3>
                                 <h3 className = {classes.artistName}>{artistName}</h3>
                             </div>
                         </div>

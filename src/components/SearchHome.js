@@ -17,7 +17,7 @@ const useStyle = makeStyles({
         justifyContent: 'center',
     },
     container: {
-
+        marginTop: '7rem',
     },
     sectionSearch: {
         display: 'flex',

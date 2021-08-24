@@ -10,7 +10,7 @@ const useStyle = makeStyles({
     },
     img: {
         width: '100%',
-        height: '92.6%',
+        height: '100%',
         position: 'absolute', 
     },
 });
