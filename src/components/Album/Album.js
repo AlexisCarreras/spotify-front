@@ -1,5 +1,9 @@
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Link} from 'wouter';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarIcon from '@material-ui/icons/Star';
 
 const useStyles = makeStyles({
     album:{
@@ -89,6 +93,15 @@ const useStyles = makeStyles({
         cursor: 'default',
         userSelect: 'none',
     },
+    NumerosTopTrack: {
+        fontSize: '18px',
+        color: '#FFFF',
+        listStyle: 'none',
+        marginBottom: '1rem',
+        height: '50px',
+        cursor: 'default',
+        userSelect: 'none',
+    },
     preview: {
         fontSize: '15px',
         color: '#888',
@@ -111,6 +124,13 @@ const useStyles = makeStyles({
           //textDecoration: 'underline rgba(245, 0, 87, 0.8)',
         },
     },
+    favoriteIcon: {
+        padding: 0,
+        bottom: '0.15rem',
+    },
+    favoriteIconFalse: {
+        color: 'white',
+    },
 });
 
 const nameSlice = (name, cantidad) => {
@@ -123,6 +143,30 @@ const nameSlice = (name, cantidad) => {
 
 export default function Album({ id, name, image, type, totalTracks, albumArtist, tracks }) {
     const classes = useStyles();
+
+    const [open, setOpen] = useState(tracks.favorite);
+    
+    const handleOpen = () => {
+        setOpen(true);
+      };
+    
+      const handleClose = () => {
+        setOpen(false);
+      };
+
+    let favoriteIcon
+    if(open===false){
+        favoriteIcon =
+            <IconButton onClick={handleOpen} className={classes.favoriteIcon} aria-label="iconStart">
+                <StarBorderIcon className={classes.favoriteIconFalse} />
+            </IconButton>
+    }
+    else{
+        favoriteIcon = 
+            <IconButton onClick={handleClose} className={classes.favoriteIcon} color="secondary" aria-label="iconStart">
+                <StarIcon />
+            </IconButton>
+    }
 
     return (
         <div className = {classes.album}>
@@ -145,6 +189,11 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
             
             <section className = {classes.trackList}>
                 {<ul>
+                    <h6 className={classes.listaTitulos}>#</h6>
+                    {tracks.map((a) => 
+                    <li className={classes.NumerosTopTrack} key={a.id} title={a.name}>{a.track_number}</li>)} 
+                </ul>}
+                {<ul>
                     <h6 className={classes.listaTitulos}>TITULO</h6>
                     {tracks.map((a) => 
                     <li className={classes.listaTopTrack} key={a.id} title={a.name}>
@@ -162,6 +211,11 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                     <li className={classes.listaTopTrack} key={a.id} title={name}>
                         <Link href={`/profile/album/${id}`} className={classes.links}>{nameSlice(name, 30)}</Link>
                     </li>)}
+                </ul>}
+                {<ul>
+                    <h6 className={classes.listaTitulos}>Fav.</h6>
+                    {tracks.map((a) => 
+                    <li className={classes.NumerosTopTrack} key={a.id}>{favoriteIcon}</li>)} 
                 </ul>}
                 {<ul>
                     <h6 className={classes.listaTitulos}>DUR.</h6>
