@@ -4,34 +4,45 @@ import ListOfItems from './components/ListOfItems';
 import ArtistProfile from './components/Artist/ArtistProfile';
 import TrackProfile from './components/Track/TrackProfile';
 import AlbumProfile from './components/Album/AlbumProfile';
-import { Route } from "wouter";
+import PageNotFound from './components/PageNotFound';
+import { Route, Switch } from "wouter";
 
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Route 
-          component={Home}
-          path="/" 
-      />
-      <Route 
-          component={ListOfItems}
-          path="/:value/:keyword" 
-      />
-      <Route 
-          component={ArtistProfile}
-          path="/profile/artist/:id" 
-      />
-      <Route 
-          component={TrackProfile}
-          path="/profile/track/:id" 
-      />
-       <Route 
-          component={AlbumProfile}
-          path="/profile/album/:id" 
-      />
-      
+      <Switch>
+        <Route 
+            exact
+            component={Home}
+            path="/" 
+        />
+        <Route
+            exact 
+            component={ListOfItems}
+            path="/:value/:keyword" 
+        />
+        <Route 
+            exact
+            component={ArtistProfile}
+            path="/profile/artist/:id" 
+        />
+        <Route 
+            exact
+            component={TrackProfile}
+            path="/profile/track/:id" 
+        />
+        <Route 
+            exact
+            component={AlbumProfile}
+            path="/profile/album/:id" 
+        />
+        <Route 
+          exact 
+          component={PageNotFound}
+        />
+      </Switch>  
     </div>
   );
 }
