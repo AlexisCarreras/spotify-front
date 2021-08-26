@@ -213,7 +213,7 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                     </li>)}
                 </ul>}
                 {<ul>
-                    <h6 className={classes.listaTitulos}>Fav.</h6>
+                    <h6 className={classes.listaTitulos}>FAV.</h6>
                     {tracks.map((a) => 
                     <li className={classes.NumerosTopTrack} key={a.id}>{favoriteIcon}</li>)} 
                 </ul>}

@@ -18,7 +18,6 @@ const useStyle = makeStyles({
         position: 'fixed',
         width: '100%',
         zIndex: '2 !important',
-        //boxShadow: '1px 15px 15px grey',
     },
     botonMenu:{
         color: 'white',
@@ -70,10 +69,13 @@ const Header = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <Link href={`/`}>
+                <Link href={`/home`}>
                     <MenuItem onClick={handleClose} className={classes.item}>Search</MenuItem>
                 </Link>
                 <MenuItem onClick={handleClose} className={classes.item}>Favorites</MenuItem>
+                <Link href={`/`}>
+                    <MenuItem onClick={handleClose} className={classes.item}>Cerrar Sesión</MenuItem>
+                </Link>
             </Menu>
 
             <div className={classes.logo}>

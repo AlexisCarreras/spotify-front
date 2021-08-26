@@ -1,0 +1,18 @@
+{
+    "tracks": [
+        {
+            "id": 1,
+            "albumIdSpotify": "prueba1",
+            "trackIdSpotify": "prueba1",
+            "artistIdSpotify": "prueba1",
+            "trackName": null
+        },
+        {
+            "id": 2,
+            "albumIdSpotify": "prueba2",
+            "trackIdSpotify": "prueba2",
+            "artistIdSpotify": "prueba2",
+            "trackName": null
+        }
+    ]
+}

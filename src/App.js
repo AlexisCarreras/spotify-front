@@ -1,9 +1,14 @@
 import Header from './components/Header';
 import Home from './components/Home';
+
+import LogIn from './components/Login/LogIn';
+import SignUp from './components/Login/SignUp';
+
 import ListOfItems from './components/ListOfItems';
 import ArtistProfile from './components/Artist/ArtistProfile';
 import TrackProfile from './components/Track/TrackProfile';
 import AlbumProfile from './components/Album/AlbumProfile';
+import Favorites from './components/Favorites/Favorites';
 import PageNotFound from './components/PageNotFound';
 import { Route, Switch } from "wouter";
 
@@ -14,9 +19,19 @@ function App() {
       <Header />
       <Switch>
         <Route 
+              exact
+              component={LogIn}
+              path="/" 
+        />
+        <Route 
+              exact
+              component={SignUp}
+              path="/signup" 
+        />
+        <Route 
             exact
             component={Home}
-            path="/" 
+            path="/home" 
         />
         <Route
             exact 
@@ -39,10 +54,16 @@ function App() {
             path="/profile/album/:id" 
         />
         <Route 
+            exact
+            component={Favorites}
+            path="/favorites" 
+        />
+        <Route 
           exact 
           component={PageNotFound}
         />
       </Switch>  
+
     </div>
   );
 }
