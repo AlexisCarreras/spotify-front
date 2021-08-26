@@ -5,14 +5,15 @@
             "albumIdSpotify": "prueba1",
             "trackIdSpotify": "prueba1",
             "artistIdSpotify": "prueba1",
-            "trackName": null
+            "trackName": "help"
         },
         {
             "id": 2,
             "albumIdSpotify": "prueba2",
             "trackIdSpotify": "prueba2",
             "artistIdSpotify": "prueba2",
-            "trackName": null
+            "trackName": "help2"
         }
     ]
+    
 }

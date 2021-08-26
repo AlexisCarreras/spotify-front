@@ -8,9 +8,10 @@ import ListOfItems from './components/ListOfItems';
 import ArtistProfile from './components/Artist/ArtistProfile';
 import TrackProfile from './components/Track/TrackProfile';
 import AlbumProfile from './components/Album/AlbumProfile';
-import Favorites from './components/Favorites/Favorites';
+// import Favorites from './components/Favorites/Favorites';
 import PageNotFound from './components/PageNotFound';
 import { Route, Switch } from "wouter";
+import FavoritesProfile from './components/Favorites/FavoritesProfile';
 
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
         />
         <Route 
             exact
-            component={Favorites}
+            component={FavoritesProfile}
             path="/favorites" 
         />
         <Route 

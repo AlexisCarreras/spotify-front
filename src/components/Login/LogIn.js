@@ -11,6 +11,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import img from '../../img/portadas.png';
 import {Link} from 'wouter';
 
@@ -44,10 +47,10 @@ const useStyles = makeStyles((theme) => ({
   imageDiscos: {
     height: '100%',
     width: '100%',
-    filter: 'blur(2px) brightness(60%)',
+    filter: 'blur(3px) brightness(60%)',
   },
   paper: {
-    margin: theme.spacing(11, 11),
+    margin: theme.spacing(8, 11),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -66,6 +69,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2, 0, 2),
     paddingTop: '0.7rem',
     paddingBottom: '0.7rem',
+  },
+  submit2: {
+    margin: theme.spacing(0, 0, 2),
+    paddingTop: '0.6rem',
+    paddingBottom: '0.6rem',
+    backgroundColor: '#666',
+    '&:hover': {
+      backgroundColor: '#777',
+    },
+    textTransform: 'none',
   },
   links: {
     textDecoration: 'none',
@@ -113,6 +126,13 @@ export default function SignInSide() {
               autoComplete="email"
               autoFocus
               color="secondary"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               variant="outlined"
@@ -125,6 +145,13 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
               color="secondary"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <VpnKeyIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="secondary" />}
@@ -139,6 +166,17 @@ export default function SignInSide() {
                 className={classes.submit}
                 >
                 Iniciar Sesión
+                </Button>
+            </Link>
+            <Link href={`/home`} className={classes.links}>
+                <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="secondary"
+                className={classes.submit2}
+                >
+                Navegar como invitado
                 </Button>
             </Link>
             <Grid container>

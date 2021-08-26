@@ -72,7 +72,9 @@ const Header = () => {
                 <Link href={`/home`}>
                     <MenuItem onClick={handleClose} className={classes.item}>Search</MenuItem>
                 </Link>
-                <MenuItem onClick={handleClose} className={classes.item}>Favorites</MenuItem>
+                <Link href={`/favorites`}>
+                    <MenuItem onClick={handleClose} className={classes.item}>Favorites</MenuItem>
+                </Link>
                 <Link href={`/`}>
                     <MenuItem onClick={handleClose} className={classes.item}>Cerrar Sesión</MenuItem>
                 </Link>
