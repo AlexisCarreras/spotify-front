@@ -125,7 +125,7 @@ export default function SignInSide() {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="secondary" />}
-              label="Recordar"
+              label="He leído y acepto los terminos de uso"
             />
             <Link href={`/home`} className={classes.links}>
                 <Button

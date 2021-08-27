@@ -120,10 +120,10 @@ export default function SignInSide() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
+              id="usuario"
+              label="Usuario"
+              name="usuario"
+              autoComplete="usuario"
               autoFocus
               color="secondary"
               InputProps={{
