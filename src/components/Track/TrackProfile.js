@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import Track from "./Track";
 import TrackService from "../../service/TrackService";
 import TrackFeaturesServices from "../../service/TrackFeaturesServices";
+import { useParams } from "react-router-dom";
 
-export default function ArtistProfile({ params }) {
-    const { id } = params;
+export default function ArtistProfile() {
+    let { id } = useParams();
 
     const [track, setTrack] = useState();
     const [trackFeatures, setTrackFeatures] = useState();

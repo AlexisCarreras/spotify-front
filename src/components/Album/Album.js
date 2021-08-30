@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Link} from 'wouter';
+import { Link } from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
@@ -197,7 +197,7 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                     <h6 className={classes.listaTitulos}>TITULO</h6>
                     {tracks.map((a) => 
                     <li className={classes.listaTopTrack} key={a.id} title={a.name}>
-                        <Link href={`/profile/track/${a.id}`} className={classes.links}>{nameSlice(a.name, 30)}</Link>
+                        <Link to={`/profile/track/${a.id}`} className={classes.links}>{nameSlice(a.name, 30)}</Link>
                     </li>)} 
                 </ul>}
                 {<ul>
@@ -209,7 +209,7 @@ export default function Album({ id, name, image, type, totalTracks, albumArtist,
                     <h6 className={classes.listaTitulos}>ALBUM</h6>
                     {tracks.map((a) => 
                     <li className={classes.listaTopTrack} key={a.id} title={name}>
-                        <Link href={`/profile/album/${id}`} className={classes.links}>{nameSlice(name, 30)}</Link>
+                        <Link to={`/profile/album/${id}`} className={classes.links}>{nameSlice(name, 30)}</Link>
                     </li>)}
                 </ul>}
                 {<ul>

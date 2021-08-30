@@ -8,6 +8,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { useParams } from "react-router-dom";
 
 const useStyle = makeStyles({
     root: {
@@ -51,9 +52,9 @@ const useStyle = makeStyles({
     },
 });
 
-export default function ListOfArtists( { params } ){
+export default function ListOfArtists(){
     const classes = useStyle();
-    const { keyword, value } = params;
+    let { keyword, value } = useParams();
 
     const [item, setItem] = useState([]);
     const [paginacion, setPaginacion] = useState(0);

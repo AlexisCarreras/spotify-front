@@ -15,7 +15,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import img from '../../img/portadas.png';
-import {Link} from 'wouter';
+import { Link } from "react-router-dom";
+// import useAuth from '../Auth/UseAuth';
 
 function Copyright() {
     const classes = useStyles();
@@ -80,22 +81,31 @@ const useStyles = makeStyles((theme) => ({
     },
     textTransform: 'none',
   },
+  link: {
+    textDecoration: 'none',
+  },
   links: {
     textDecoration: 'none',
     color: '#777',
     '&:hover': {
       textDecoration: 'underline',
+    },
   },
   footer: {
     display: 'flex',
     alignItems: 'end',
     justifyContent: 'center',
   },
-},
 }));
 
 export default function SignInSide() {
   const classes = useStyles();
+
+  // const auth = useAuth();
+  // const handleLogin = () => {
+  //   auth.login();
+  //   history.pushState("/")
+  // }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -114,7 +124,7 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Iniciar Sesión
           </Typography>
-          <form className={classes.form} noValidate>
+          <form  className={classes.form} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -157,7 +167,7 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="secondary" />}
               label="Recordar"
             />
-            <Link href={`/home`} className={classes.links}>
+            <Link to={`/home`} className={classes.link}>
                 <Button
                 type="submit"
                 fullWidth
@@ -168,7 +178,7 @@ export default function SignInSide() {
                 Iniciar Sesión
                 </Button>
             </Link>
-            <Link href={`/home`} className={classes.links}>
+            <Link to={`/home`} className={classes.links}>
                 <Button
                 type="submit"
                 fullWidth
@@ -181,12 +191,12 @@ export default function SignInSide() {
             </Link>
             <Grid container>
               <Grid item xs>
-                <Link href={`/`} variant="body2" className={classes.links}>
+                <Link to={`/`} variant="body2" className={classes.links}>
                   ¿Olvidaste tu contraseña?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href={`/signup`} variant="body2" className={classes.links}>
+                <Link to={`/signup`} variant="body2" className={classes.links}>
                   {"¿No tienes cuenta? Registrate"}
                 </Link>
               </Grid>

@@ -5,8 +5,11 @@ import Favorites from './Favorites';
 
 const useStyle = makeStyles({
     root: {
-        margin: 0,
-        paddingTop: '1rem',
+        background: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(51,51,51,1) 0%, rgba(0,0,0,1) 100%)',
+        width: '100%',
+        height: '100%',
+        paddingTop: '2rem',
+        color: '#FFF'
     },
 })
 
@@ -23,7 +26,7 @@ export default function FavoritesProfile() {
         <div className={classes.root}>
             {
                 favorites &&
-                <div className={classes.root}>
+                <div>
 
                     {
                         favorites.tracks.map(({id, albumIdSpotify, trackIdSpotify, artistIdSpotify, trackName}) =>

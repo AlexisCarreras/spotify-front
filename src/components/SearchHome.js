@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -8,8 +8,7 @@ import SendIcon from '@material-ui/icons/Send';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { useLocation } from "wouter";
-import { useState } from "react"
+import { useHistory } from "react-router-dom";
 
 const useStyle = makeStyles({
     root: {
@@ -66,13 +65,12 @@ const SearchHome = () => {
 
     const [keyword, setKeyword] = useState('')
     const [value, setValue] = useState('artist')
-    const [path, pushLocation] = useLocation()
 
-    console.log(path);
-
+    let history = useHistory();
+    
     const handleSubmit = evt => {
         evt.preventDefault()
-        pushLocation(`/${value}/${keyword}`)
+        history.push(`/${value}/${keyword}`)
     }
 
     const handleChange = evt => {

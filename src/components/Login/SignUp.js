@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import img from '../../img/portadas2.jpg';
-import {Link} from 'wouter';
+import { Link } from "react-router-dom";
 
 function Copyright() {
     const classes = useStyles();
@@ -66,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2, 0, 2),
     paddingTop: '0.7rem',
     paddingBottom: '0.7rem',
+  },
+  link: {
+    textDecoration: 'none',
   },
   links: {
     textDecoration: 'none',
@@ -127,7 +130,7 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="secondary" />}
               label="He leído y acepto los terminos de uso"
             />
-            <Link href={`/home`} className={classes.links}>
+            <Link to={`/home`} className={classes.link}>
                 <Button
                 type="submit"
                 fullWidth
@@ -140,12 +143,12 @@ export default function SignInSide() {
             </Link>
             <Grid container>
               <Grid item xs>
-                <Link href={`/`} variant="body2" className={classes.links}>
+                <Link to={`/`} variant="body2" className={classes.links}>
                   ¿Olvidaste tu contraseña?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href={`/`} variant="body2" className={classes.links}>
+                <Link to={`/`} variant="body2" className={classes.links}>
                   {"¿Ya tienes una cuenta? Inicia Sesión"}
                 </Link>
               </Grid>

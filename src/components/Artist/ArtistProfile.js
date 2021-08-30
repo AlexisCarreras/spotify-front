@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import {Link} from 'wouter';
+import { Link, useParams } from "react-router-dom";
 
 const useStyle = makeStyles({
   section1: {
@@ -121,9 +121,9 @@ const useStyle = makeStyles({
   },
 });
 
-export default function ArtistProfile({params}) {
+export default function ArtistProfile() {
   const classes = useStyle(); 
-  const { id } = params;
+  let { id } = useParams();
 
   const [artist, setArtist] = useState();
   const [artistAlbum, setArtistAlbum] = useState();
@@ -193,7 +193,7 @@ export default function ArtistProfile({params}) {
                     <h6 className={classes.listaTitulos}>TITULO</h6>
                     {artistTopTrack.map(({name, id}) => 
                     <li className={classes.listaTopTrack} key={id} title={name}>
-                      <Link href={`/profile/track/${id}`} className={classes.links}>{nameSlice(name, 30)}</Link>
+                      <Link to={`/profile/track/${id}`} className={classes.links}>{nameSlice(name, 30)}</Link>
                     </li>)}
                   </ul>}
                   {<ul>
@@ -201,7 +201,7 @@ export default function ArtistProfile({params}) {
                     {console.log(artist.id)}
                     {artistTopTrack.map((a) => 
                     <li className={classes.listaTopTrack} key={a.id} title={artist.name}>
-                      <Link href={`/profile/artist/${artist.id}`} className={classes.links}>{nameSlice(artist.name, 30)}</Link>
+                      <Link to={`/profile/artist/${artist.id}`} className={classes.links}>{nameSlice(artist.name, 30)}</Link>
                     </li>)}
                   </ul>}
                   {<ul>
@@ -223,7 +223,7 @@ export default function ArtistProfile({params}) {
                   {
                     artistAlbum.map(({name, image, id}) =>
                     <div className={classes.contentAlbums} key={id}>
-                      <Link href={`/profile/album/${id}`} className={classes.links}>
+                      <Link to={`/profile/album/${id}`} className={classes.links}>
                         <img
                           src={image}
                           className={classes.imgAlbum} 

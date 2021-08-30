@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import AlbumService from "../../service/AlbumService";
 import AlbumTrackService from "../../service/AlbumTrackService";
 import { makeStyles } from '@material-ui/core/styles';
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
     fondo: {
@@ -13,9 +14,9 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ArtistProfile({ params }) {
+export default function AlbumProfile() {
     const classes = useStyles();
-    const { id } = params;
+    let { id } = useParams();
     const [album, setAlbum] = useState();
     const [albumTrack, setAlbumTrack] = useState();
 

@@ -8,7 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
-import {Link} from 'wouter';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,10 +57,15 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         lineHeight: '14px',
     },
-
+    links: {
+        textDecoration: 'none',
+    },
+    linksTracks: {
+        textDecoration: 'none',
+        width: '70%',
+    },
     rootTrack: {
         height: '4rem',
-        width: '70%',
         marginBottom: '0.8rem',
         display: 'flex',
         position: 'relative',
@@ -142,7 +147,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
 
     if (type === "artist") {
         return (
-            <Link href={`/profile/artist/${id}`}>
+            <Link to={`/profile/artist/${id}`} className={classes.links}>
                 <Card className={classes.root} title={artistName}>
                     <CardActionArea>
                         <Avatar className={classes.avatarArtist} alt="Artist" src={url} />
@@ -158,7 +163,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
     }
     else if (type === "album" || type === "single" || type === "compilation") {
         return (
-            <Link href={`/profile/album/${id}`}>
+            <Link to={`/profile/album/${id}`} className={classes.links}>
                 <Card className={classes.root} title={albumName}>
                     <CardActionArea>
                         <Avatar alt="Album" src={url} variant="square" className={classes.avatarAlbum} />
@@ -177,7 +182,7 @@ export default function Item({id, type, url, artistName, albumName, trackName, t
     }
     else if (type === "track") {
         return (
-            <Link href={`/profile/track/${id}`}>
+            <Link to={`/profile/track/${id}`} className={classes.linksTracks}>
                 <Card className={classes.rootTrack} title={trackName}>
                     <CardActionArea className={classes.areaTrack}> 
                         <Avatar alt="Track" src={url} variant="square" className={classes.avatarTrack} />
